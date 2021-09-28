@@ -31,10 +31,10 @@ async def start(bot, cmd):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link) 
+                                InlineKeyboardButton("📌 ᴊᴏɪɴ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", url=invite_link.invite_link) 
                             ],
                             [
-                                InlineKeyboardButton(" 🔄 Try Again", callback_data=f"checksub#{file_id}")
+                                InlineKeyboardButton("ʀᴇꜰʀᴇꜱʜ ↺", callback_data=f"checksub#{file_id}")
                             ]
                         ]
                     ),
@@ -66,8 +66,8 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('Search again', switch_inline_query_current_chat=''),
-                        InlineKeyboardButton('More Bots', url='https://t.me/ErrorXbotz')
+                        InlineKeyboardButton('ꜱᴇᴀʀᴄʜ ᴀɢᴀɪɴ', switch_inline_query_current_chat=''),
+                        InlineKeyboardButton('ꜱʜᴀʀᴇ ᴜꜱ', url='https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl')
                     ]
                     ]
                 await bot.send_cached_media(
@@ -82,11 +82,11 @@ async def start(bot, cmd):
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
         await bot.send_message(
             chat_id=cmd.from_user.id,
-            text="**Please Join My Updates Channel to use this Bot!**",
+            text="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 🤭\n\nനിങ്ങൾക് സിനിമകൾ വെന്നോ? അതിനായി അത്യം ങ്ങളുടെ മെയിൻ ചാനലിൽ ജോയിൻ ചെയ്യണം... 😁\nJoin ചെയ്ത ശേഷം വീണ്ടും ബോട്ട് /start ആക്കൂ.😁\nഎന്നിട്ട് ഒന്നുടെ Refresh ബട്ടൺ ക്ലിക്ക് ചെയ്താൽ മൂവി കിട്ടുന്നതാണ്..!**",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
+                        InlineKeyboardButton("📌 ᴊᴏɪɴ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", url=invite_link.invite_link)
                     ]
                 ]
             )
@@ -99,15 +99,15 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Search Here", switch_inline_query_current_chat=''),
-                        InlineKeyboardButton("Source Code", url='https://github.com/Jinn-Of-Telegram/Media-Search-bot-v2'),
+                        InlineKeyboardButton("ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ", switch_inline_query_current_chat=''),
+                        InlineKeyboardButton("ꜱʜᴀʀᴇ ᴜꜱ", url='https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl'),
                     ],
                    [
-                       InlineKeyboardButton("Update Channel", url='https://t.me/ErrorXbotz'),
-                       InlineKeyboardButton("Support Group", url='https://t.me/ErrorXsupport'),
+                       InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇꜱ ⚒️", url='https://t.me/cv_updatez'),
+                       InlineKeyboardButton("ᴊᴏɪɴ ♂️", url='https://t.me/cv_group1'),
                     ],
                      [
-                        InlineKeyboardButton("About", callback_data="about")
+                        InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="about")
                     ]
                 ]
             )
@@ -147,10 +147,10 @@ async def channel_info(bot, message):
 @Client.on_message(filters.command('total') & filters.user(ADMINS))
 async def total(bot, message):
     """Show total files in database"""
-    msg = await message.reply("Processing...⏳", quote=True)
+    msg = await message.reply("Processing...🖕", quote=True)
     try:
         total = await Media.count_documents()
-        await msg.edit(f'📁 Saved files: {total}')
+        await msg.edit(f'🖕 Saved files: {total}')
     except Exception as e:
         logger.exception('Failed to check total files')
         await msg.edit(f'Error: {e}')
@@ -170,7 +170,7 @@ async def delete(bot, message):
     """Delete file from database"""
     reply = message.reply_to_message
     if reply and reply.media:
-        msg = await message.reply("Processing...⏳", quote=True)
+        msg = await message.reply("Processing...🖕", quote=True)
     else:
         await message.reply('Reply to file with /delete which you want to delete', quote=True)
         return
@@ -196,18 +196,18 @@ async def delete(bot, message):
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('Update Channel', url='https://t.me/ErrorXbotz'),
-            InlineKeyboardButton('Source Code', url='https://github.com/Jinn-Of-Telegram/Media-Search-bot-v2')
+            InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ ⚒️', url='https://t.me/cv_updatez'),
+            InlineKeyboardButton('ᴊᴏɪɴ ♂️', url='https://t.me/cv_group1')
         ]
         ]
-    await message.reply(text="<b>Developer : <a href='https://t.me/Jinn_007'>꧁Ⓜⓤⓣⓗⓐⓛⓘⓑ_★࿐</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/Jinn-Of-Telegram/Media-Search-bot-V2'>Click here</a>\nUpdate Channel : <a href='https://t.me/ErrorXBotz'>ErrorXBotz</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    await message.reply(text="<b>ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/joel_bx'>ᴊᴏᴇʟ ʙx</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/Jinn-Of-Telegram/Media-Search-bot-V2'>Click here</a>\nUpdate Channel : <a href='https://t.me/ErrorXBotz'>ErrorXBotz</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 @Client.on_message(filters.command('help'))
 async def bot_info(bot, message):
     buttons = [
         [
-            InlineKeyboardButton('Update Channel', url='https://t.me/ErrorXbotz'),
-            InlineKeyboardButton('Support Group', url='https://t.me/ErrorXSupport')
+            InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ ⚒️', url='https://t.me/cv_updatez'),
+            InlineKeyboardButton('ᴊᴏɪɴ ♂️', url='https://t.me/cv_group1')
         ]
         ]
     await message.reply(text="<b>If You Have Any Doubts And If Any Errors In Codes Or Bugs Inform Us On Our Support Group ❗️\n Use Below Buttons To Get Support Group / Update channel Links </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
@@ -271,7 +271,7 @@ async def showinfo(client, message):
         f"<b>UserID</b> : <code>{id}</code>\n"
         f"<b>Username Name</b> : {user_name}\n"
         f"<b>Permanant USER Link</b> : <a href='tg://user?id={id}'>Link ❗️</a>\n"
-        f"<b>@ErrorXBotz</b>",
+        f"<b>@cv_group1</b>",
         quote=True,
         parse_mode="html"
     )
@@ -279,7 +279,7 @@ async def showinfo(client, message):
 @Client.on_message(filters.command('id') & (filters.private | filters.group))
 async def showid(client, message):
     chat_type = message.chat.type
-
+Hi
     if chat_type == "private":
         user_id = message.chat.id
         await message.reply_text(
