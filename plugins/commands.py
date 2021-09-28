@@ -276,26 +276,3 @@ async def showinfo(client, message):
         parse_mode="html"
     )
 
-@Client.on_message(filters.command('id') & (filters.private | filters.group))
-async def showid(client, message):
-    chat_type = message.chat.type
-Hi
-        user_id = message.chat.id
-        await message.reply_text(
-            f"Your ID : `{user_id}`",
-            parse_mode="md",
-            quote=True
-        )
-    elif (chat_type == "group") or (chat_type == "supergroup"):
-        user_id = message.from_user.id
-        chat_id = message.chat.id
-        if message.reply_to_message:
-            reply_id = f"Replied User ID : `{message.reply_to_message.from_user.id}`"
-        else:
-            reply_id = ""
-        await message.reply_text(
-            f"Your ID : `{user_id}`\nThis Group ID : `{chat_id}`\n\n{reply_id}",
-            parse_mode="md",
-            quote=True
-        )  
-
