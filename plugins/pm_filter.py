@@ -18,6 +18,7 @@ GENRES = ["fun, fact",
          "Film Noir",
          "Documentary"]
 
+
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
     if message.text.startswith("/"):
@@ -37,11 +38,11 @@ async def filter(client, message):
         except UserNotParticipant:
             await client.send_message(
                 chat_id=message.from_user.id,
-                text="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 🤭\n\nനിങ്ങൾക് സിനിമകൾ വെന്നോ? അതിനായി അത്യം ങ്ങളുടെ മെയിൻ ചാനലിൽ ജോയിൻ ചെയ്യണം... 😁\nJoin ചെയ്ത ശേഷം വീണ്ടും ബോട്ട് /start ആക്കൂ.😁\nഎന്നിട്ട് ഒന്നുടെ Refresh ബട്ടൺ ക്ലിക്ക് ചെയ്താൽ മൂവി കിട്ടുന്നതാണ്..!**",
+                text="**Please Join My Updates Channel to use this Bot!**",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
-                            InlineKeyboardButton("ʀᴇꜰʀᴇꜱʜ ↺", url=invite_link.invite_link)
+                            InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
                         ]
                     ]
                 ),
@@ -49,8 +50,9 @@ async def filter(client, message):
             )
             return
         except Exception:
-            await client.send_message(
+            await client.send_photo(
                 chat_id=message.from_user.id,
+                photo="https://telegra.ph/file/ff75af2798e2d3dcc7a91.jpg",
                 text="Something went Wrong.",
                 parse_mode="markdown",
                 disable_web_page_preview=True
@@ -65,12 +67,12 @@ async def filter(client, message):
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"[{get_size(file.file_size)}] {file.file_name}"
+                filename = f"[{get_size(file.file_names)}] {file.file_size}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
                     )
         else:
-            await client.send_sticker(chat_id=message.from_user.id, sticker='CAADBQADMwIAAtbcmFelnLaGAZhgBwI')
+            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgUAAx0CRR6maAAC6SZhPhJwHCpRAS_zyW6JDCyBe4tuMAAC3gIAAkQV8VWP94c4ZHLAQR4E')
             return
 
         if not btn:
@@ -86,34 +88,34 @@ async def filter(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="🗒️ 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
+                [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
             )
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n** • {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=    f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n** • {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
 
         buttons.append(
-            [InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➡",callback_data=f"next_0_{keyword}")]
+            [InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ☞",callback_data=f"next_0_{keyword}")]
         )    
         buttons.append(
-            [InlineKeyboardButton(text=f"🗒️ 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")]
+            [InlineKeyboardButton(text=f"📜 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")]
         )
         poster=None
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=(f"🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n** • {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n** • {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -123,8 +125,8 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n** • {message.chat.title} 📺**"
-
+        result_txt = f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**"
+       
         nyva=BOT.get("username")
         if not nyva:
             botusername=await client.get_me()
@@ -134,7 +136,7 @@ async def group(client, message):
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"📂 {get_size(file.file_size)} {file.file_name}"
+                filename = f"🎬 [{get_size(file.file_size)}] 📂 {file.file_name} 🗃️"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
@@ -153,39 +155,39 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="🗒️ 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
+                [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
             )
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_text(result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
 
         buttons.append(
-            [InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ➡",callback_data=f"next_0_{keyword}")]
+            [InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ☞",callback_data=f"next_0_{keyword}")]
         )    
         buttons.append(
-            [InlineKeyboardButton(text=f"🗒️ 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")]
+            [InlineKeyboardButton(text=f"📜 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")]
         )
         poster=None
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(result_txt, reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
     """Get size in readable format"""
 
-    units = "Bytes", "KB", "MB", "GB", "TB", "PB", "EB"
+    units = "Bytes", "𝐊𝐁", "𝐌𝐁", "𝐆𝐁", "𝐓𝐁", "𝐏𝐁", "𝐄𝐁"
     size = float(size)
     i = 0
     while size >= 1024.0 and i < len(units):
@@ -221,10 +223,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons = data['buttons'][int(index)+1].copy()
 
                 buttons.append(
-                    [InlineKeyboardButton("⇦ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}")]
+                    [InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"🗒️ 𝐏𝐀𝐆𝐄𝐒 {int(index)+2}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)+2}/{data['total']}", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -235,10 +237,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons = data['buttons'][int(index)+1].copy()
 
                 buttons.append(
-                    [InlineKeyboardButton("⇦ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)+1}_{keyword}")]
+                    [InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)+1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"🗒️ 𝐏𝐀𝐆𝐄𝐒 {int(index)+2}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)+2}/{data['total']}", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -259,10 +261,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons = data['buttons'][int(index)-1].copy()
 
                 buttons.append(
-                    [InlineKeyboardButton("𝐍𝐄𝐗𝐓 ➡", callback_data=f"next_{int(index)-1}_{keyword}")]
+                    [InlineKeyboardButton("𝐍𝐄𝐗𝐓 ☞", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"🗒️ 𝐏𝐀𝐆𝐄𝐒 {int(index)}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)}/{data['total']}", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -273,10 +275,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons = data['buttons'][int(index)-1].copy()
 
                 buttons.append(
-                    [InlineKeyboardButton("⇦ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
+                    [InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}")]
                 )
                 buttons.append(
-                    [InlineKeyboardButton(f"🗒️ 𝐏𝐀𝐆𝐄𝐒 {int(index)}/{data['total']}", callback_data="pages")]
+                    [InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)}/{data['total']}", callback_data="pages")]
                 )
 
                 await query.edit_message_reply_markup( 
@@ -286,10 +288,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             buttons = [
                 [
-                    InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ', url='https://t.me/cv_updatez'),
+                    InlineKeyboardButton('Update Channel', url='https://t.me/subin_works'),
+                    InlineKeyboardButton('Source Code', url='https://github.com/subinps/Media-Search-bot')
                 ]
                 ]
-            await query.message.edit(text="<b>ᴅᴇᴠᴇʟᴏᴘᴇ: <a href='https://t.me/joel_bx'>ᴊᴏᴇʟʟ ʙx</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\n Update Channel : <a href='https://t.me/ErrorXBotz'>ErrorXBotz</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+            await query.message.edit(text="<b>Developer : <a href='https://t.me/subinps_bot'>SUBIN</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/subinps/Media-Search-bot'>Click here</a>\nUpdate Channel : <a href='https://t.me/subin_works'>XTZ Bots</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 
 
@@ -310,7 +313,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                     InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ', url='https://t.me/cv_updatez'),
+                        InlineKeyboardButton('𝐔𝐏𝐃𝐀𝐓𝐄𝐒 ⚒️', url='https://t.me/cv_updatez'),
+                        InlineKeyboardButton('𝐉𝐎𝐈𝐍 ♂️', url='https://t.me/subin_works')
                     ]
                     ]
                 
@@ -341,7 +345,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('ᴊᴏɪɴ', url='https://t.me/cv_group1'),
+                        InlineKeyboardButton('New Movies', url='https://t.me/new_movie_z'),
+                        InlineKeyboardButton('Update Channel', url='https://t.me/cv_updatez')
                     ]
                     ]
                 
@@ -357,4 +362,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "pages":
             await query.answer()
     else:
-        await query.answer("Nice.. Next Time Sure You Will Get It 🤭😝",show_alert=True)
+        await query.answer("കൌതുകും ലേശം കൂടുതൽ ആണല്ലേ👀",show_alert=True)
