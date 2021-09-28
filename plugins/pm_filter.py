@@ -92,10 +92,10 @@ async def filter(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"🎬 ᴛɪᴛʟᴇ: {search}\n**🌟 Rating:** {random.choice(ʀᴀᴛɪɴɢ)}\n**🎭 Genre:**)}\n**• {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"🎬 ᴛɪᴛʟᴇ: {search}\n**🌟 Rating:** {random.choice(ʀᴀᴛɪɴɢ)}\n**🎭 Genre:**)}\n**• {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -111,9 +111,9 @@ async def filter(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"🎬 ᴛɪᴛʟᴇ: {search}\n**🌟 Rating:** {random.choice(ʀᴀᴛɪɴɢ)}\n**🎭 Genre:**)}\n**• {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"🎬 ᴛɪᴛʟᴇ: {search}\n**🌟 Rating:** {random.choice(ʀᴀᴛɪɴɢ)}\n**🎭 Genre:**)}\n**• {message.chat.title} 📺**🎬 ᴛɪᴛʟᴇ: {search}\n**🌟 Rating:** {random.choice(ʀᴀᴛɪɴɢ)}\n**🎭 Genre:**)}\n**• {message.chat.title} 📺**", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -134,7 +134,7 @@ async def group(client, message):
         if files:
             for file in files:
                 file_id = file.file_id
-                filename = f"🎬 [{get_size(file.file_size)}] 🎥 {file.file_name}"
+                filename = f"📂 {get_size(file.file_size)} {file.file_name}"
                 btn.append(
                     [InlineKeyboardButton(text=f"{filename}", url=f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}")]
                 )
@@ -185,7 +185,7 @@ async def group(client, message):
 def get_size(size):
     """Get size in readable format"""
 
-    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
+    units = "Bytes", "KB", "MB", "GB", "TB", "PB", "EB"
     size = float(size)
     i = 0
     while size >= 1024.0 and i < len(units):
@@ -286,10 +286,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             buttons = [
                 [
-                    InlineKeyboardButton('Update Channel', url='https://t.me/ErrorXbotz'),
+                    InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ', url='https://t.me/cv_updatez'),
                 ]
                 ]
-            await query.message.edit(text="<b>Developer : <a href='https://t.me/Jinn_007'>꧁Ⓜⓤⓣⓗⓐⓛⓘⓑ_★࿐</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\n Update Channel : <a href='https://t.me/ErrorXBotz'>ErrorXBotz</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+            await query.message.edit(text="<b>ᴅᴇᴠᴇʟᴏᴘᴇ: <a href='https://t.me/joel_bx'>ᴊᴏᴇʟʟ ʙx</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\n Update Channel : <a href='https://t.me/ErrorXBotz'>ErrorXBotz</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 
 
@@ -310,7 +310,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                     InlineKeyboardButton('📥 More Bots 📥', url='https://t.me/ErrorXBotz'),
+                     InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ', url='https://t.me/cv_updatez'),
                     ]
                     ]
                 
@@ -341,7 +341,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     f_caption = f"{title}"
                 buttons = [
                     [
-                        InlineKeyboardButton('📥 More Bots 📥', url='https://t.me/ErrorXBotz'),
+                        InlineKeyboardButton('ᴊᴏɪɴ', url='https://t.me/cv_group1'),
                     ]
                     ]
                 
