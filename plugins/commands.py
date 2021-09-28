@@ -280,7 +280,6 @@ async def showinfo(client, message):
 async def showid(client, message):
     chat_type = message.chat.type
 Hi
-    if chat_type == "":
         user_id = message.chat.id
         await message.reply_text(
             f"Your ID : `{user_id}`",
