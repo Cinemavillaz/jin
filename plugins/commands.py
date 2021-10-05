@@ -94,22 +94,21 @@ async def start(bot, cmd):
             )
         )
     else:
-        await cmd.reply_text(
-            START_MSG,
-            parse_mode="Markdown",
-            disable_web_page_preview=True,
+        await cmd.reply_photo(
+            photo="https://telegra.ph/file/1c4dc6991b182c4af1512.jpg",
+            caption=START_MSG,
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("ꜱᴇᴀʀᴄʜ ʜᴇʀᴇ", switch_inline_query_current_chat=''),
-                        InlineKeyboardButton("ꜱʜᴀʀᴇ ᴜꜱ", url='https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl'),
+                        InlineKeyboardButton("Movie REQ💥", url='https://t.me/cv_group1'),
+                        InlineKeyboardButton("OTT UPDATES📍", url='https://t.me/cv_updatez'),
                     ],
                    [
-                       InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇꜱ ⚒️", url='https://t.me/cv_updatez'),
-                       InlineKeyboardButton("ᴊᴏɪɴ ♂️", url='https://t.me/cv_group1'),
+                       InlineKeyboardButton("New Release🎞️", url='https://t.me/cv_updatez'),
+                       InlineKeyboardButton("Channel✨", url='https://t.me/joinchat/o0habe6377I5MDhl'),
                     ],
                      [
-                        InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="about")
+                        InlineKeyboardButton("SHARE US🙏", url="https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl")
                     ]
                 ]
             )
