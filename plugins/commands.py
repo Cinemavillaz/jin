@@ -6,6 +6,14 @@ from info import START_MSG, CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
 from utils import Media, get_file_details
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
+import random
+
+PHOTO = [
+    "https://telegra.ph/file/0a37f338a47ab2a909997.jpg",
+    "https://telegra.ph/file/9be92d8a94f53bf6d6192.jpg",
+    "https://telegra.ph/file/1c4dc6991b182c4af1512.jpg",
+    "https://telegra.ph/file/400882986bb62bab8940d.jpg"
+]
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
@@ -27,7 +35,7 @@ async def start(bot, cmd):
                 ident, file_id = cmd.text.split("_-_-_-_")
                 await bot.send_photo(
                     chat_id=cmd.from_user.id,
-                    photo="https://telegra.ph/file/1c4dc6991b182c4af1512.jpg",
+                    photo=f"{random.choice(PHOTO)}",
                     caption="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 🤭\n\nനിങ്ങൾക് സിനിമകൾ വെന്നോ? അതിനായി അത്യം ങ്ങളുടെ മെയിൻ ചാനലിൽ ജോയിൻ ചെയ്യണം... 😁\nJoin ചെയ്ത ശേഷം വീണ്ടും ബോട്ട് /start ആക്കൂ.😁\nഎന്നിട്ട് ഒന്നുടെ Refresh ബട്ടൺ ക്ലിക്ക് ചെയ്താൽ മൂവി കിട്ടുന്നതാണ്..!**",
                     reply_markup=InlineKeyboardMarkup(
                         [
@@ -83,7 +91,7 @@ async def start(bot, cmd):
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
         await bot.send_photo(
             chat_id=cmd.from_user.id,
-            photo="https://telegra.ph/file/1c4dc6991b182c4af1512.jpg",
+            photo=f"{random.choice(PHOTO)}",
             caption="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 🤭\n\nനിങ്ങൾക് സിനിമകൾ വെന്നോ? അതിനായി അത്യം ങ്ങളുടെ മെയിൻ ചാനലിൽ ജോയിൻ ചെയ്യണം... 😁\nJoin ചെയ്ത ശേഷം വീണ്ടും ബോട്ട് /start ആക്കൂ.😁\nഎന്നിട്ട് ഒന്നുടെ Refresh ബട്ടൺ ക്ലിക്ക് ചെയ്താൽ മൂവി കിട്ടുന്നതാണ്..!**",
             reply_markup=InlineKeyboardMarkup(
                 [
@@ -95,7 +103,7 @@ async def start(bot, cmd):
         )
     else:
         await cmd.reply_photo(
-            photo="https://telegra.ph/file/1c4dc6991b182c4af1512.jpg",
+            photo=f"{random.choice(PHOTO)}",
             caption=START_MSG,
             reply_markup=InlineKeyboardMarkup(
                 [
