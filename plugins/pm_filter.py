@@ -68,9 +68,9 @@ async def filter(client, message):
             for file in files:
                 file_id = file.file_id
                 filename = f"[{get_size(file.file_names)}] {file.file_size}"
-                btn.append(
-                    [InlineKeyboardButton(text=f"{filename}",callback_data=f"subinps#{file_id}")]
-                    )
+                btn.append([
+                           InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
+                           InlineKeyboardButton(text=f"{file_size}, url=f"{file_link}")])
         else:
             await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgUAAx0CRR6maAAC6SZhPhJwHCpRAS_zyW6JDCyBe4tuMAAC3gIAAkQV8VWP94c4ZHLAQR4E')
             return
