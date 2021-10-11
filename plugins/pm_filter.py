@@ -150,7 +150,7 @@ async def group(client, message):
                       InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]
                 )
-                btnc.append(
+                btn.append(
                     [
                       InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
                     ]
@@ -167,19 +167,7 @@ async def group(client, message):
                 "total" : len(btns),
                 "buttons" : btns
             }
-            return
-        if not btnc:
-            return
-
-        if len(btnc) > 1: 
-            btns = list(split_list(btnc, 1)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
         else:
-            buttond = btnc
             buttons = btn
             buttons.append(
                 [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
@@ -315,11 +303,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "about":
             buttons = [
                 [
-                    InlineKeyboardButton('Update Channel', url='https://t.me/subin_works'),
-                    InlineKeyboardButton('Source Code', url='https://github.com/subinps/Media-Search-bot')
+                    InlineKeyboardButton('Update Channel', url='https://t.me/cv_updatez'),
+                    InlineKeyboardButton('Source Code', url='https://t.me/nokiyirunnoippokitum')
                 ]
                 ]
-            await query.message.edit(text="<b>Developer : <a href='https://t.me/subinps_bot'>SUBIN</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/subinps/Media-Search-bot'>Click here</a>\nUpdate Channel : <a href='https://t.me/subin_works'>XTZ Bots</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+            await query.message.edit(text="<b>Developer : <a href='https://t.me/JOeL_TG'>Joel TG</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/subinps/Media-Search-bot'>Click here</a>\nUpdate Channel : <a href='https://t.me/subin_works'>XTZ Bots</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 
 
@@ -341,7 +329,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons = [
                     [
                         InlineKeyboardButton('𝐔𝐏𝐃𝐀𝐓𝐄𝐒 ⚒️', url='https://t.me/cv_updatez'),
-                        InlineKeyboardButton('𝐉𝐎𝐈𝐍 ♂️', url='https://t.me/subin_works')
+                        InlineKeyboardButton('𝐉𝐎𝐈𝐍 ♂️', url='https://t.me/CV_Group1')
                     ]
                     ]
                 
