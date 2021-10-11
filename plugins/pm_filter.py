@@ -74,9 +74,6 @@ async def filter(client, message):
                     [
                             InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
                             InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
-                    ]
-                    [
-                            InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
                     ]   
                 )          
         else:
@@ -153,7 +150,6 @@ async def group(client, message):
                       InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]
                 )
-        else:
                 btn.append(
                     [
                       InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
