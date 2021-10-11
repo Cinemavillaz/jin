@@ -108,20 +108,20 @@ async def start(bot, cmd):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("Movie REQ💥", url='https://t.me/cv_group1'),
-                        InlineKeyboardButton("OTT UPDATES📍", url='https://t.me/cv_updatez'),
+                        InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url= "https://t.me/Cv_links_project7_bot?startgroup=true")
                     ],
-                   [
-                       InlineKeyboardButton("New Release🎞️", url='https://t.me/cv_updatez'),
-                       InlineKeyboardButton("Channel✨", url='https://t.me/joinchat/o0habe6377I5MDhl'),
+                    [
+                        InlineKeyboardButton("🔍 𝖲𝖾𝖺𝗋𝖼𝗁 𝖧𝖾𝗋𝖾", switch_inline_query_current_chat=''),
+                        InlineKeyboardButton("𝖦𝗋𝗈𝗎𝗉", url="https://t.me/cv_group1")
                     ],
-                     [
-                        InlineKeyboardButton("SHARE US🙏", url="https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl")
-                    ]
+                    [
+                        InlineKeyboardButton("🕵️‍♂️ 𝖢𝗋𝖾𝖺𝗍𝗈𝗋", url="https://t.me/Joel_TG"),
+                        InlineKeyboardButton("😊 𝖠𝖻𝗈𝗎𝗍", callback_data="about")
+                    ]    
                 ]
             )
-        )
-
+         )
+    
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
