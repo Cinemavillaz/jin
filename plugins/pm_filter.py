@@ -150,11 +150,6 @@ async def group(client, message):
                       InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]
                 )
-                btn.append(
-                    [
-                      InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
-                    ]
-                )
         else:
             return
         if not btn:
