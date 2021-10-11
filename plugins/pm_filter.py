@@ -150,7 +150,7 @@ async def group(client, message):
                       InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]
                 )
-                btn.append(
+                btnc.append(
                     [
                       InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
                     ]
@@ -167,7 +167,19 @@ async def group(client, message):
                 "total" : len(btns),
                 "buttons" : btns
             }
+            return
+        if not btnc:
+            return
+
+        if len(btnc) > 1: 
+            btns = list(split_list(btnc, 1)) 
+            keyword = f"{message.chat.id}-{message.message_id}"
+            BUTTONS[keyword] = {
+                "total" : len(btns),
+                "buttons" : btns
+            }
         else:
+            buttond = btnc
             buttons = btn
             buttons.append(
                 [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
