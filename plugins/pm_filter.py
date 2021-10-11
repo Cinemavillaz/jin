@@ -70,28 +70,31 @@ async def filter(client, message):
                 filename = file.file_name
                 file_size = get_size(file.file_size)
                 file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
-                reply_markup = InlineKeyboardMarkup(
+                btn.append(
                     [
-                      InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
-                      InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
+                            InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
+                            InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]
-                )
+                    [
+                            InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
+                    ]   
+                )          
         else:
             await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgUAAx0CRR6maAAC6SZhPhJwHCpRAS_zyW6JDCyBe4tuMAAC3gIAAkQV8VWP94c4ZHLAQR4E')
             return
 
-        if not reply_markup:
+        if not btn:
             return
 
-        if len(reply_markup) > 10: 
-            btns = list(split_list(reply_markup, 10)) 
+        if len(btn) > 10: 
+            btns = list(split_list(btn, 10)) 
             keyword = f"{message.chat.id}-{message.message_id}"
             BUTTONS[keyword] = {
                 "total" : len(btns),
                 "buttons" : btns
             }
         else:
-            buttons = reply_markup
+            buttons = btn
             buttons.append(
                 [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
             )
@@ -118,7 +121,7 @@ async def filter(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‌‌‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
@@ -144,10 +147,16 @@ async def group(client, message):
                 file_name = file.file_name
                 file_size = get_size(file.file_size)
                 file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
-                reply_markup = InlineKeyboardMarkup(
+                btn.append(
                     [
                       InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
                       InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
+                    ]
+                )
+        else:
+                btn.append(
+                    [
+                      InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
                     ]
                 )
         else:
