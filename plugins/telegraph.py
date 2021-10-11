@@ -13,4 +13,9 @@ from random import choice
 from telegraph import upload_file
 
 @Client.on_message(filters.command("telegraph"))
-async def start(bot, cmd):
+async def start(bot, message):
+    reply = message.reply_to_message
+
+    if not reply or not reply.text:
+        return await message.reply("Reply to a text message")
+
