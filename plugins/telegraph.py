@@ -11,3 +11,5 @@ import datetime
 import aiofiles
 from random import choice
 from telegraph import upload_file
+
+@Client.on_message(filters.command("telegraph"))
