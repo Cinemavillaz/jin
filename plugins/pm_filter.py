@@ -80,18 +80,18 @@ async def filter(client, message):
             await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgUAAx0CRR6maAAC6SZhPhJwHCpRAS_zyW6JDCyBe4tuMAAC3gIAAkQV8VWP94c4ZHLAQR4E')
             return
 
-        if not btn:
+        if not reply_markup:
             return
 
-        if len(btn) > 10: 
-            btns = list(split_list(btn, 10)) 
+        if len(reply_markup) > 10: 
+            btns = list(split_list(reply_markup, 10)) 
             keyword = f"{message.chat.id}-{message.message_id}"
             BUTTONS[keyword] = {
                 "total" : len(btns),
                 "buttons" : btns
             }
         else:
-            buttons = btn
+            buttons = reply_markup
             buttons.append(
                 [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
             )
