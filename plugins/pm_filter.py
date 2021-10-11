@@ -61,7 +61,7 @@ async def filter(client, message):
     if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
         return
     if 2 < len(message.text) < 100:    
-        btn = []
+        btn = [] 
         search = message.text
         files = await get_filter_results(query=search)
         if files:
@@ -73,7 +73,7 @@ async def filter(client, message):
                 btn.append(
                     [
                             InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
-                            InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}"),
+                            InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]
                     [
                             InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
@@ -114,7 +114,8 @@ async def filter(client, message):
         buttons.append(
             [
                     InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ☞",callback_data=f"next_0_{keyword}"),
-                    InlineKeyboardButton(text=f"📜 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")]
+                    InlineKeyboardButton(text=f"📜 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")
+            ]
         )
         poster=None
         if API_KEY:
@@ -149,7 +150,7 @@ async def group(client, message):
                 btn.append(
                     [
                       InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
-                      InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}"),
+                      InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]
                     [
                       InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
