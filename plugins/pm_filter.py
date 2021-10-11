@@ -74,9 +74,9 @@ async def filter(client, message):
                     [
                             InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
                             InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
-                    ]
+                    ],
                     [
-                            InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
+                            InlineKeyboardButton("📌 JOIN OUR MAIN CHANNEL", url="https://t.me/cv_updatez")
                     ]   
                 )          
         else:
