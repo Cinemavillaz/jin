@@ -13,3 +13,4 @@ from random import choice
 from telegraph import upload_file
 
 @Client.on_message(filters.command("telegraph"))
+async def start(bot, cmd):
