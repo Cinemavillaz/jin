@@ -149,11 +149,10 @@ async def group(client, message):
                 file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
                 btn.append(
                     [
+                      InlineKeyboardButton(text="📌 JOIN ON OUR MAIN CHANNEL 📌", url="https://t.me/cv_updatez")
+                      ],[
                       InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
                       InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
-                    ]
-                    [
-                      InlineKeyboardButton(text=f"📌 JOIN OUR MAIN CHANNEL", url=f"https://t.me/cv_updatez")
                     ]
                 )
         else:
