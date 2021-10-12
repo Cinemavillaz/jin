@@ -99,10 +99,10 @@ async def filter(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=    f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=    f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genres}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -120,7 +120,7 @@ async def filter(client, message):
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -130,7 +130,7 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**"
+        result_txt = f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**"
        
         nyva=BOT.get("username")
         if not nyva:
@@ -171,9 +171,9 @@ async def group(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -184,14 +184,14 @@ async def group(client, message):
                InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ☞",callback_data=f"next_0_{keyword}"),
                InlineKeyboardButton(text=f"📜 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")
             ]
-        )
+        ) 
         poster=None
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
