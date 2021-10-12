@@ -10,3 +10,5 @@ parse-torrent-name
 telegraph
 motor
 aiofiles
+tgcrypto
+pyrogram==1.2.9
