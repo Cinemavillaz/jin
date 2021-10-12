@@ -13,6 +13,13 @@ BOT_TOKEN = environ['BOT_TOKEN']
 CACHE_TIME = int(environ.get('CACHE_TIME', 300))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', False))
 
+class Config(object):
+
+      BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
+      API_ID = int(os.environ.get("API_ID", 12345))
+      API_HASH = os.environ.get("API_HASH")
+      OWNER_ID = int(os.environ.get("OWNER_ID"))
+
 # Admins, Channels & Users
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ['ADMINS'].split()]
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ['CHANNELS'].split()]
