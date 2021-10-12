@@ -21,7 +21,15 @@
             "description": "Your bot token from @BotFather",
             "value": ""
         },
-        "API_ID": {
+            "OWNER_ID": {
+            "description": "give your telegram user id here",
+            "value": ""
+        },
+            "WEBHOOK": {
+            "description": "Setting this to ANYTHING will enable webhooks when in env mode",
+            "value": "ANYTHING"
+        },
+            "API_ID": {
             "description": "Get this value from https://my.telegram.org",
             "value": ""
         },
