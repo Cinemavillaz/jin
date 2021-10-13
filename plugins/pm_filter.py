@@ -79,21 +79,7 @@ async def filter(client, message):
                     ]   
                 )          
         else:
-            client.send_photo(
-            chat_id = message.chat.id,
-            photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
-            caption=f"""
-Hɪ {message.from_user.mention},
-Cᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- {search} Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...
-Cʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ {search} Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...
-Iғ Iᴛ's Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@ᴀᴅᴍɪɴs) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs {search} Mᴏᴠɪᴇ ❕
-""",.      
-            parse_mode="html",
-            reply_to_message_id=message.message_id
-        )
-        await asyncio.sleep(5)
-        await Send_message.delete()
-
+            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgUAAxkBAAID5WFmS1d1T-sETWIs7NgS6C7cAvqIAAKzAwAC3qnpVHxGZ4Q6pqbdHgQ')
             return
 
         if not btn:
