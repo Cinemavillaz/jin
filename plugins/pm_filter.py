@@ -81,7 +81,7 @@ async def filter(client, message):
             client.send_photo(
             chat_id = message.chat.id,
             photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
-            text=f"""
+            caption=f"""
 Hɪ {message.from_user.mention},
 Cᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- {search} Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...
 Cʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ {search} Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...
@@ -166,6 +166,21 @@ async def group(client, message):
                     ]
                 )
         else:
+            client.send_photo(
+            chat_id = message.chat.id,
+            photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
+            caption=f"""
+Hɪ {message.from_user.mention},
+Cᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- {search} Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...
+Cʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ {search} Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...
+Iғ Iᴛ's Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@ᴀᴅᴍɪɴs) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs {search} Mᴏᴠɪᴇ ❕
+""",.      
+            parse_mode="html",
+            reply_to_message_id=message.message_id
+        )
+        await asyncio.sleep(5)
+        await Send_message.delete()
+
             return
         if not btn:
             return
