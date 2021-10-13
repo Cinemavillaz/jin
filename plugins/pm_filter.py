@@ -78,8 +78,9 @@ async def filter(client, message):
                     ]   
                 )          
         else:
-            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgUAAx0CRR6maAAC6SZhPhJwHCpRAS_zyW6JDCyBe4tuMAAC3gIAAkQV8VWP94c4ZHLAQR4E')
+            client.send_photo(
             chat_id = message.chat.id,
+            photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
             text=f"""
 Hɪ {message.from_user.mention},
 Cᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- {search} Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...
