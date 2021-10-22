@@ -154,13 +154,13 @@ async def group(client, message):
         else:
             return
         if not btn:
-            client.send_text(
-            parse_mode="html",
-            chat_id = message.chat.id,
-            text=f"Hɪ {message.from_user.mention},\nCᴏᴜʟᴅɴᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- **{search}** Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...\n\nCʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ **{search}** Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...\n\nIғ Iᴛs Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@ᴀᴅᴍɪɴs) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs **{search}** Mᴏᴠɪᴇ ❕",    
-            reply_to_message_id=message.message_id
-    )
-        await asyncio.sleep(10) 
+            Send_message = await client.send_photo(
+                 chat_id = message.chat.id,
+                 photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
+                 caption=f"<b>Hɪ {message.from_user.mention} 👋,\nCᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ</b> :- ' {search} ' <b>Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ‼️...\n\nCʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ</b> ' {search}  ' <b>Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...\n\nIғ Iᴛ's Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@admins) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs</b> ' {search} ' <b>Mᴏᴠɪᴇ ❕</b>",
+                 reply_to_message_id=message.message_id       
+        )
+        await asyncio.sleep(10)
         await Send_message.delete()
 
         if len(btn) > 10: 
