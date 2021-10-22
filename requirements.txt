@@ -9,5 +9,4 @@ requests
 parse-torrent-name
 telegraph
 aiofiles
-tgcrypto
 pyrogram==1.2.9
