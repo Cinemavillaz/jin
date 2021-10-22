@@ -157,10 +157,10 @@ async def group(client, message):
         if not btn:
             client.send_text(
             parse_mode="html",
-            reply_to_message_id=message.message_id
             chat_id = message.chat.id,
             text=f"Hɪ {message.from_user.mention},\nCᴏᴜʟᴅɴᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- **{search}** Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...\n\nCʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ **{search}** Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...\n\nIғ Iᴛs Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@ᴀᴅᴍɪɴs) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs **{search}** Mᴏᴠɪᴇ ❕",    
-        )
+            reply_to_message_id=message.message_id
+    )
         await asyncio.sleep(10) 
         await Send_message.delete()
 
