@@ -94,16 +94,16 @@ async def filter(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
+                [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=    f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genres}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -112,7 +112,7 @@ async def filter(client, message):
         buttons.append(
             [
                     InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ☞",callback_data=f"next_0_{keyword}"),
-                    InlineKeyboardButton(text=f"📜 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")
+                    InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
             ]
         )
         poster=None
@@ -121,7 +121,7 @@ async def filter(client, message):
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -131,7 +131,7 @@ async def group(client, message):
         btn = []
 
         search = message.text
-        result_txt = f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**"
+        result_txt = f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**"
        
         nyva=BOT.get("username")
         if not nyva:
@@ -173,15 +173,15 @@ async def group(client, message):
         else:
             buttons = btn
             buttons.append(
-                [InlineKeyboardButton(text="📜 𝐏𝐀𝐆𝐄𝐒 1/1",callback_data="pages")]
+                [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -190,22 +190,22 @@ async def group(client, message):
         buttons.append(
             [    
                InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ☞",callback_data=f"next_0_{keyword}"),
-               InlineKeyboardButton(text=f"📜 𝐏𝐀𝐆𝐄𝐒 1/{data['total']}",callback_data="pages")
+               InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
             ]
         ) 
         poster=None
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"**🎬 Title:**             url=f'https://www.omdbapi.com/?s={title}&apikey={API_KEY}'\n**📆 Release:**             url=f'https://www.omdbapi.com/?s={title}&y={year}&apikey={API_KEY}'\n**🌟 Rating:**             url=f'https://www.omdbapi.com/?s={title}&r={rating}&apikey={API_KEY}'\n**🎭 Genre:**             url=f'https://www.omdbapi.com/?s={title}g={genre}&apikey={API_KEY}'\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
     """Get size in readable format"""
 
-    units = "Bytes", "𝐊𝐁", "𝐌𝐁", "𝐆𝐁", "𝐓𝐁", "𝐏𝐁", "𝐄𝐁"
+    units = "Bytes", "KB", "MB", "GB", "TB", "PB", "EB"
     size = float(size)
     i = 0
     while size >= 1024.0 and i < len(units):
@@ -243,7 +243,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [
                         InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}"),
-                        InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)+2}/{data['total']}", callback_data="pages")
+                        InlineKeyboardButton(f"📜 {int(index)+2}/{data['total']}", callback_data="pages")
                     ]
                 )
 
@@ -256,8 +256,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
                 buttons.append(
                     [
-                       InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)+1}_{keyword}"),
-                       InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)+2}/{data['total']}", callback_data="pages")
+                       InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ➡️", callback_data=f"next_{int(index)+1}_{keyword}"),
+                       InlineKeyboardButton(f"📜 {int(index)+2}/{data['total']}", callback_data="pages")
                     ]
                 )
 
@@ -281,7 +281,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [
                         InlineKeyboardButton("𝐍𝐄𝐗𝐓 ☞", callback_data=f"next_{int(index)-1}_{keyword}"),
-                        InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)}/{data['total']}", callback_data="pages")
+                        InlineKeyboardButton(f"📜 {int(index)}/{data['total']}", callback_data="pages")
                     ]
                 )
 
@@ -295,7 +295,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 buttons.append(
                     [
                          InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}"),
-                         InlineKeyboardButton(f"📜 𝐏𝐀𝐆𝐄𝐒 {int(index)}/{data['total']}", callback_data="pages")
+                         InlineKeyboardButton(f"📜 {int(index)}/{data['total']}", callback_data="pages")
                     ]
                 )
 
