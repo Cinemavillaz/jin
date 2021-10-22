@@ -96,6 +96,8 @@ async def filter(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
+           data = BUTTONS[keyword] 
+           total = len(btns)  
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
@@ -115,6 +117,8 @@ async def filter(client, message):
                     InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
             ]
         )
+        data = BUTTONS[keyword] 
+        total = len(btns)
         poster=None
         if API_KEY:
             poster=await get_poster(search)
@@ -129,7 +133,8 @@ async def group(client, message):
         return
     if 2 < len(message.text) < 50:    
         btn = []
-
+        data = BUTTONS[keyword] 
+        total = len(btns)
         search = message.text
         result_txt = f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**📄 Total Pages: {data['total']}\n**🗳️ Votes:** {random.choice(VOTES)}\n**🗣 Requested By  {update.from_user.mention}\n\n**★ {message.chat.title} ♻️**"
        
@@ -167,6 +172,8 @@ async def group(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
+            data = BUTTONS[keyword] 
+            total = len(btns)
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
@@ -185,6 +192,8 @@ async def group(client, message):
                InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
             ]
         ) 
+        data = BUTTONS[keyword] 
+        total = len(btns)
         poster=None
         if API_KEY:
             poster=await get_poster(search)
@@ -372,4 +381,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "pages":
             await query.answer()
     else:
-        await query.answer("കൌതുകും ലേശം കൂടുതൽ ആണല്ലേ👀",show_alert=True)
+        await query.answer("This Is Not 4 You ❕",show_alert=True)
