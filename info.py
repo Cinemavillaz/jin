@@ -19,7 +19,6 @@ class Config(object):
       BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
       API_ID = int(os.environ.get("API_ID", 12345))
       API_HASH = os.environ.get("API_HASH")
-      OWNER_ID = int(os.environ.get("OWNER_ID"))
 
 # Admins, Channels & Users
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ['ADMINS'].split()]
@@ -36,10 +35,7 @@ DATABASE_NAME = environ['DATABASE_NAME']
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Messages
-default_start_msg = """
-**Hi, I'm Media Search Bot or ypu can call me as Auto-Filter Bot**
-Here you can search files in Inline mode as well as PM, Use the below buttons to search files or send me the name of file to search.
-"""
+default_start_msg =f"**Hi** {update.from_user.mention} 👋 ,\n **I am an Advanced Auto-filter bot, Add me to your group , make me admin and see my power...😝🔥**"
 START_MSG = environ.get('START_MSG', default_start_msg)
 
 FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "")
