@@ -20,6 +20,9 @@ GENRES = ["fun, fact",
          "Documentary"]
 VOTES = ["9221", "303", "56066", "373", "46026", "7736", "1294", "10311", "29458", "372624", "30959", "17725", "25186", "4629", "36926", "463802", "36291", "36281", "294628"]
 
+data = BUTTONS[keyword]
+TOTAL = len(btns)
+
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
     if message.text.startswith("/"):
@@ -96,13 +99,12 @@ async def filter(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
-            data = BUTTONS[keyword] 
-            total = len(btns)  
+            
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**📄 Total Pages: {data['total']}\n**🗳️ Votes:** {random.choice(VOTES)}\n**🗣 Requested By  {update.from_user.mention}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**📄 Total Pages: {data['total']}\n**🗳️ Votes:** {random.choice(VOTES)}\n**🗣 Requested By  {update.from_user.mention}\n\n**♻️ {message.chat.title}**", (data = BUTTONS[keyword]) , [total = len(btns)] reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
                 await message.reply_text(f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**📄 Total Pages: {data['total']}\n**🗳️ Votes:** {random.choice(VOTES)}\n**🗣 Requested By  {update.from_user.mention}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
@@ -117,8 +119,7 @@ async def filter(client, message):
                     InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
             ]
         )
-        data = BUTTONS[keyword] 
-        total = len(btns)
+        
         poster=None
         if API_KEY:
             poster=await get_poster(search)
@@ -133,8 +134,7 @@ async def group(client, message):
         return
     if 2 < len(message.text) < 50:    
         btn = []
-        data = BUTTONS[keyword] 
-        total = len(btns)
+        
         search = message.text
         result_txt = f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**📄 Total Pages: {data['total']}\n**🗳️ Votes:** {random.choice(VOTES)}\n**🗣 Requested By  {update.from_user.mention}\n\n**★ {message.chat.title} ♻️**"
        
@@ -172,8 +172,7 @@ async def group(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
-            data = BUTTONS[keyword] 
-            total = len(btns)
+            
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
@@ -192,8 +191,7 @@ async def group(client, message):
                InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
             ]
         ) 
-        data = BUTTONS[keyword] 
-        total = len(btns)
+        
         poster=None
         if API_KEY:
             poster=await get_poster(search)
