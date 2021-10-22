@@ -155,10 +155,10 @@ async def group(client, message):
         else:
             client.send_photo(
             chat_id = message.chat.id,
-            photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
-            caption=f"Hɪ {message.from_user.mention},\nCᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- {search} Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...\n\nCʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ {search} Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...\n\nIғ Iᴛ's Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@ᴀᴅᴍɪɴs) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs {search} Mᴏᴠɪᴇ ❕"      
             parse_mode="html",
             reply_to_message_id=message.message_id
+            photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
+            caption=f"Hɪ {message.from_user.mention},\nCᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ :- {search} Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ❕...\n\nCʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ {search} Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...\n\nIғ Iᴛ's Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@ᴀᴅᴍɪɴs) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs {search} Mᴏᴠɪᴇ ❕"      
         )
         await asyncio.sleep(10)
         await Send_message.delete()
