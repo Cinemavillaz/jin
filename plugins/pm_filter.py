@@ -96,8 +96,8 @@ async def filter(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
-           data = BUTTONS[keyword] 
-           total = len(btns)  
+            data = BUTTONS[keyword] 
+            total = len(btns)  
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
