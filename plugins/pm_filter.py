@@ -159,7 +159,7 @@ async def group(client, message):
                  reply_to_message_id=message.message_id       
         )
         await asyncio.sleep(10)
-        await Send_message.delete()
+        await Send_message.delete(1)
         if not btn:
             return
         if len(btn) > 10: 
