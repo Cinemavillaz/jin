@@ -158,8 +158,8 @@ async def group(client, message):
                  caption=f"<b>Hɪ {message.from_user.mention} 👋,\nCᴏᴜʟᴅɴ'ᴛ Fɪɴᴅ Tʜᴇ Mᴏᴠɪᴇ</b> :- ' {search} ' <b>Tʜᴀᴛ Yᴏᴜ Hᴀᴠᴇ Rᴇǫᴜᴇsᴛᴇᴅ ‼️...\n\nCʜᴇᴄᴋ Wʜᴇᴛʜᴇʀ Rᴇǫᴜᴇsᴛᴇᴅ Qᴜᴇʀʏ</b> ' {search}  ' <b>Is Cᴏʀʀᴇᴄᴛ Oʀ Nᴏᴛ Iɴ Gᴏᴏɢʟᴇ ❕...\n\nIғ Iᴛ's Cᴏʀʀᴇᴄᴛ Tʜᴇɴ Tᴀɢ Aᴅᴍɪɴ (@admins) Tᴏ ᴜᴘʟᴏᴀᴅ Tʜɪs</b> ' {search} ' <b>Mᴏᴠɪᴇ ❕</b>",
                  reply_to_message_id=message.message_id       
         )
-        await asyncio.sleep(10)
-        await Send_message.delete(1)
+        await asyncio.sleep(0)
+        await Send_message.delete()
         if not btn:
             return
         if len(btn) > 10: 
