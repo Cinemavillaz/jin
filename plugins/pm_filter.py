@@ -152,8 +152,6 @@ async def group(client, message):
                     ]
                 )
         else:
-            return
-        if not btn:
             Send_message = await client.send_photo(
                  chat_id = message.chat.id,
                  photo="https://telegra.ph/file/eabeaf432b58f129ea2b4.jpg",
@@ -162,7 +160,8 @@ async def group(client, message):
         )
         await asyncio.sleep(10)
         await Send_message.delete()
-
+        if not btn:
+            return
         if len(btn) > 10: 
             btns = list(split_list(btn, 10)) 
             keyword = f"{message.chat.id}-{message.message_id}"
