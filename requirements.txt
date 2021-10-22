@@ -7,6 +7,3 @@ umongo==3.0.0
 pyromod
 requests
 parse-torrent-name
-telegraph
-aiofiles
-pyrogram==1.2.9
