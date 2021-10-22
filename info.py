@@ -35,7 +35,7 @@ DATABASE_NAME = environ['DATABASE_NAME']
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 
 # Messages
-message = update.from_user.mention
+message = message.from_user.mention
 default_start_msg =f"**Hi** {message} 👋 ,\n **I am an Advanced Auto-filter bot, Add me to your group , make me admin and see my power...😝🔥**"
 START_MSG = environ.get('START_MSG', default_start_msg)
 
