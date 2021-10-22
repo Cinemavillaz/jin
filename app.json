@@ -53,7 +53,7 @@
         },
         "START_MSG": {
             "description": "Welcome message for start command",
-            "value": "**Hi, I'm [Media Search Bot V2](https://github.com/Jinn-Of-Telegram/Media-Search-bot-v2) or you can call me as Auto-Filter Bot**\n\nHere you can search files in Inline mode as well as PM, Use the below buttons to search files or send me the name of file to search.",
+            "value": f"**Hi** {update.from_user.mention} 👋 ,\n I am an Advanced Auto-filter bot, Add me to your group , make me admin and see my power...😝🔥",
             "required": false
         },
         "USE_CAPTION_FILTER": {
