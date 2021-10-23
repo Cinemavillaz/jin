@@ -321,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('Source Code', url='https://t.me/nokiyirunnoippokitum')
                 ]
                 ]
-            await query.message.edit(text="<b>Developer : <a href='https://t.me/JOeL_TG'>Joel TG</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/subinps/Media-Search-bot'>Click here</a>\nUpdate Channel : <a href='https://t.me/subin_works'>XTZ Bots</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+            await query.message.edit(text="<b>○ My Name : Autofilter v1\n○ Creator : <a href="https://t.me/Joel_TG">Jᴏᴇʟ</a>\n○ Credits : Everyone in this journey\n○ Language : <a href="http://t.me/python">python3</a>\n○ Library : <a href="https://docs.pyrogram.org/">Pyrogram asyncio 0.17.1</a>\n○ Server : <a href="http://contabo.com/">Contabo</a>\n○ Database : MongoDB Free Tier\n○ Build Status : V7.3 [BETA] </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 
 
