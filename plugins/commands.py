@@ -27,7 +27,7 @@ async def start(bot, cmd):
                     await bot.send_message(
                         chat_id=cmd.from_user.id,
                         text="Sorry Sir, You are Banned to use me.",
-                        parse_mode="markdown",
+                        parse_mode="HTML",
                         disable_web_page_preview=True
                     )
                     return
@@ -47,14 +47,14 @@ async def start(bot, cmd):
                             ]
                         ]
                     ),
-                    parse_mode="markdown"
+                    parse_mode="HTML"
                 )
                 return
             except Exception:
                 await bot.send_message(
                     chat_id=cmd.from_user.id,
                     text="Something went Wrong.",
-                    parse_mode="markdown",
+                    parse_mode="HTML",
                     disable_web_page_preview=True
                 )
                 return
@@ -104,7 +104,7 @@ async def start(bot, cmd):
     else:
         await cmd.reply_video(
             video="https://telegra.ph/file/6306bc5b97d515edf150c.mp4",
-            caption=START_MSG,
+            caption=START_MSG.format(message.from_user.mention),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
