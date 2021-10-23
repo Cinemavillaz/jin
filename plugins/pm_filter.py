@@ -108,10 +108,10 @@ async def filter(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n👲 **Requested BY {message.from_user.mention}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n👲 **Requested BY {message.from_user.mention}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -134,7 +134,7 @@ async def filter(client, message):
         if poster:
             await message.reply_photo(photo=poster, caption=f"<b>Here is What I Found In My Database For Your Query {search} ‌‎ ­  ­  ­  ­  ­  </b>", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n👲 **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -144,7 +144,7 @@ async def group(client, message):
         btn = []
         
         search = message.text
-        result_txt = f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n👲 **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**"
+        result_txt = f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**"
        
         nyva=BOT.get("username")
         if not nyva:
@@ -185,7 +185,7 @@ async def group(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n👲 **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
             else:
                 await message.reply_text(f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
             return
@@ -208,9 +208,9 @@ async def group(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n👲 **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=poster, caption=f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
         else:
-            await message.reply_text(f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n👲 **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
@@ -391,4 +391,4 @@ async def cb_handler(client: Client, query: CallbackQuery):
         elif query.data == "pages":
             await query.answer()
     else:
-        await query.answer("This Is Not 4 You ❕",show_alert=True)
+        await query.answer("ഹായ് {update.from_user.mention}\n സ്വന്തം കാര്യത്തിൽ തലയിട്ടാൽമതി അത് {message.from_user.mention} ഉള്ളതാണു ❕",show_alert=True)
