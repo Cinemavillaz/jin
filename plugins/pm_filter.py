@@ -106,7 +106,7 @@ async def filter(client, message):
                 await message.reply_photo(photo=poster, caption=f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
 
             else:
-                await message.reply_text(f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n**♻️ {message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"**🎬 Title: {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n**♻️ {message.chat.title}**\n\nRequested By {message.from_user.mention}", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
