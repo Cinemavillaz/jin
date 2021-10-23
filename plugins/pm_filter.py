@@ -186,8 +186,10 @@ async def group(client, message):
 
         buttons.append(
             [    
-               InlineKeyboardButton(text="𝐍𝐄𝐗𝐓 ☞",callback_data=f"next_0_{keyword}"),
-               InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
+               InlineKeyboardButton(text="• ɢᴏ ᴛᴏ ɴᴇxᴛ ᴘᴀɢᴇ •",callback_data=f"next_0_{keyword}")]
+        )
+        buttons.append(
+            [InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
             ]
         ) 
         
