@@ -21,6 +21,11 @@ GENRES = ["fun, fact",
 VOTES = ["9221", "303", "56066", "373", "46026", "7736", "1294", "10311", "29458", "372624", "30959", "17725", "25186", "4629", "36926", "463802", "36291", "36281", "294628"]
 
 
+@Client.on_callback_query()
+async def cb_data(bot, update):
+    if update.data == "close":
+        await update.message.delete()
+
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
@@ -189,7 +194,9 @@ async def group(client, message):
                InlineKeyboardButton(text="• ɢᴏ ᴛᴏ ɴᴇxᴛ ᴘᴀɢᴇ •",callback_data=f"next_0_{keyword}")]
         )
         buttons.append(
-            [InlineKeyboardButton(text=f"📜 1/{data['total']}",callback_data="pages")
+            [InlineKeyboardButton(text="ᴘᴀɢᴇ",callback_data="pages"),
+             InlineKeyboardButton(text=f"1 - {data['total']}",callback_data="pages"),
+             InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
             ]
         ) 
         
