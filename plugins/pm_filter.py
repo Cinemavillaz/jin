@@ -321,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('Source Code', url='https://t.me/nokiyirunnoippokitum')
                 ]
                 ]
-            await query.message.edit(text="<b>○ My Name : Autofilter v1\n○ Creator : <a href="https://t.me/Joel_TG">Jᴏᴇʟ</a>\n○ Credits : Everyone in this journey\n○ Language : <a href="http://t.me/python">python3</a>\n○ Library : <a href="https://docs.pyrogram.org/">Pyrogram asyncio 0.17.1</a>\n○ Server : <a href="http://contabo.com/">Contabo</a>\n○ Database : MongoDB Free Tier\n○ Build Status : V7.3 [BETA] </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgQAAxkBAAOZYXTsPU3t8jaR6pnonM8THf3Ip44AAjQMAAK4frlRCj-r5d2VXikeBA'), reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 
 
