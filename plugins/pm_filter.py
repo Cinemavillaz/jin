@@ -321,7 +321,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     InlineKeyboardButton('Source Code', url='https://t.me/nokiyirunnoippokitum')
                 ]
                 ]
-            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgQAAxkBAAOZYXTsPU3t8jaR6pnonM8THf3Ip44AAjQMAAK4frlRCj-r5d2VXikeBA'), reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgQAAxkBAAOZYXTsPU3t8jaR6pnonM8THf3Ip44AAjQMAAK4frlRCj-r5d2VXikeBA') reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
 
 
