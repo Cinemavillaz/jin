@@ -162,6 +162,7 @@ async def group(client, message):
                     [
                       InlineKeyboardButton(text="📌 Join On Main Channel📌", url="https://t.me/cv_updatez")]
                 )
+                ]
                 btn.append(
                     [
                       InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
