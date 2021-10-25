@@ -145,6 +145,13 @@ async def group(client, message):
         
         search = message.text
         result_txt = f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**"
+
+    if filters:
+        results.append(
+                [
+                    InlineKeyboardButton("📌 JOIN OUR MAIN CHANNEL ", url="https://t.me/cv_updatez")
+                ]
+            )
        
         nyva=BOT.get("username")
         if not nyva:
