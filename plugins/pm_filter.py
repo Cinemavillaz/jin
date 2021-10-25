@@ -85,12 +85,6 @@ async def filter(client, message):
                 )
                 btn.append(
                     [
-                      InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
-                      InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
-                    ]
-                )
-                btn.append(
-                    [
                             InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
                             InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
                     ]   
