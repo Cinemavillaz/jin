@@ -145,13 +145,6 @@ async def group(client, message):
         
         search = message.text
         result_txt = f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**"
-
-    if filters:
-        buttons.insert(0, 
-                [
-                    InlineKeyboardButton("📌 JOIN OUR MAIN CHANNEL ", url="https://t.me/cv_updatez")
-                ]
-            )
        
         nyva=BOT.get("username")
         if not nyva:
@@ -165,6 +158,12 @@ async def group(client, message):
                 file_name = file.file_name
                 file_size = get_size(file.file_size)
                 file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
+                    if filters:
+        buttons.insert( 
+                [
+                    InlineKeyboardButton("📌 JOIN OUR MAIN CHANNEL ", url="https://t.me/cv_updatez")
+                ]
+            )
                 btn.append(
                     [
                       InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
