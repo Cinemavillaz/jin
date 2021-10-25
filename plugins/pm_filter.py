@@ -78,6 +78,17 @@ async def filter(client, message):
                 filename = file.file_name
                 file_size = get_size(file.file_size)
                 file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
+                button.append(
+                    [
+                      InlineKeyboardButton(text="📌 Join On Main Channel📌", url="https://t.me/cv_updatez")
+                    ]
+                )
+                btn.append(
+                    [
+                      InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
+                      InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
+                    ]
+                )
                 btn.append(
                     [
                             InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
@@ -160,7 +171,8 @@ async def group(client, message):
                 file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
                 button.append(
                     [
-                      InlineKeyboardButton(text="📌 Join On Main Channel📌", url="https://t.me/cv_updatez")]
+                      InlineKeyboardButton(text="📌 Join On Main Channel📌", url="https://t.me/cv_updatez")
+                    ]
                 )
                 btn.append(
                     [
