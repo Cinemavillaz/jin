@@ -121,7 +121,7 @@ async def filter(client, message):
             [InlineKeyboardButton(text="• ɢᴏ ᴛᴏ ɴᴇxᴛ ᴘᴀɢᴇ •",callback_data=f"next_0_{keyword}")]
         )
         buttons.append(
-            [InlineKeyboardButton(text="ᴘᴀɢᴇ",callback_data="pages"),
+            [InlineKeyboardButton(text="ᴘᴀɢᴇ",callback_data="pages2021"),
              InlineKeyboardButton(text=f"1 - {data['total']}",callback_data="pages"),
              InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
             ]
@@ -197,7 +197,7 @@ async def group(client, message):
                InlineKeyboardButton(text="• ɢᴏ ᴛᴏ ɴᴇxᴛ ᴘᴀɢᴇ •",callback_data=f"next_0_{keyword}")]
         )
         buttons.append(
-            [InlineKeyboardButton(text="ᴘᴀɢᴇ",callback_data="pages"),
+            [InlineKeyboardButton(text="ᴘᴀɢᴇ",callback_data="pages2021"),
              InlineKeyboardButton(text=f"1 - {data['total']}",callback_data="pages"),
              InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
             ]
