@@ -179,7 +179,7 @@ async def group(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
-            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/Movies_Land4U')])            
+            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])            
             poster=None
             if API_KEY:
                 poster=await get_poster(search)
@@ -202,7 +202,7 @@ async def group(client, message):
              InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
             ]
         ) 
-        
+        buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])            
         poster=None
         if API_KEY:
             poster=await get_poster(search)
