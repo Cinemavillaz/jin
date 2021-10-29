@@ -5,8 +5,6 @@ from pyrogram import Client, filters
 import re
 import random
 import asyncio
-import urllib.request
-import json
 from pyrogram.errors import UserNotParticipant
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
 BUTTONS = {}
@@ -108,9 +106,9 @@ async def filter(client, message):
             buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
             poster=None
             if API_KEY:
-                poster=await get_poster(search)
+               await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
             if poster:
-                await message.reply_photo(photo=poster, caption=f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"IMDb add a
 
             else:
                 await message.reply_text(f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
@@ -133,7 +131,7 @@ async def filter(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons)) 
         else:
             await message.reply_text(f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
 
@@ -186,7 +184,7 @@ async def group(client, message):
             if API_KEY:
                 poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n🗣️ **Requested BY {message.from_user.mention}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
+                 await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
             else:
                 await message.reply_text(f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
             return
@@ -209,7 +207,7 @@ async def group(client, message):
         if API_KEY:
             poster=await get_poster(search)
         if poster:
-            await message.reply_photo(photo=poster, caption=f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
         else:
             await message.reply_text(f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
 
