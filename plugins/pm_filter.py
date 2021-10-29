@@ -145,7 +145,7 @@ async def group(client, message):
         btn = []
         
         search = message.text
-        result_txt"
+        result_txt = f"IMDb add ak"
        
         nyva=BOT.get("username")
         if not nyva:
