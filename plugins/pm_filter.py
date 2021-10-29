@@ -20,6 +20,7 @@ GENRES = ["fun, fact",
          "Documentary"]
 VOTES = ["9221", "303", "56066", "373", "46026", "7736", "1294", "10311", "29458", "372624", "30959", "17725", "25186", "4629", "36926", "463802", "36291", "36281", "294628"]
 
+imdb=await get_poster(search)
 
 @Client.on_callback_query()
 async def cb_data(bot, update):
@@ -105,13 +106,10 @@ async def filter(client, message):
             )
             buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
             poster=None
-            if API_KEY:
+            if imdb and imdb.get('poster'):
                await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
-            if poster:
-                await message.reply_photo(photo=poster, caption=f"IMDb add a
-
-            else:
-                await message.reply_text(f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
+            elif imdb:
+                await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -128,12 +126,10 @@ async def filter(client, message):
         ) 
         
         poster=None
-        if API_KEY:
-            poster=await get_poster(search)
-        if poster:
+        if imdb and imdb.get('poster'):
             await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons)) 
-        else:
-            await message.reply_text(f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
+        elif imdb:
+            await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -143,7 +139,7 @@ async def group(client, message):
         btn = []
         
         search = message.text
-        result_txt = f"IMDb add ak"
+        result_txt = f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10"
        
         nyva=BOT.get("username")
         if not nyva:
@@ -181,12 +177,10 @@ async def group(client, message):
             )
             buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])            
             poster=None
-            if API_KEY:
-                poster=await get_poster(search)
-            if poster:
+            if imdb and imdb.get('poster'):
                  await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
-            else:
-                await message.reply_text(f"**🎬 Title: **{search}**\n🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n\n**★ {message.chat.title} ♻️**", reply_markup=InlineKeyboardMarkup(buttons))
+            elif imdb:
+                 await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -204,12 +198,10 @@ async def group(client, message):
         ) 
         buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])            
         poster=None
-        if API_KEY:
-            poster=await get_poster(search)
-        if poster:
+        if imdb and imdb.get('poster'):
             await message.reply_photo(photo=imdb.get('poster'), caption=f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await message.reply_text(f"IMDb add ak", reply_markup=InlineKeyboardMarkup(buttons))
+        elif imdb:
+            await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
