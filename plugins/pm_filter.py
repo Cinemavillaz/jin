@@ -199,11 +199,9 @@ async def group(client, message):
         if API_KEY:
          poster=await get_poster(search)
         if poster:          
-                       await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                       await message.reply_photo(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
         elif imdb:
-                            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
-
-    
+                            await message.reply_text(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**"
 def get_size(size):
     """Get size in readable format"""
 
