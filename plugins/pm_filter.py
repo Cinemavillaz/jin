@@ -105,8 +105,11 @@ async def filter(client, message):
             )
             buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
             poster=none
+            if API_KEY:
+              poster=await get_poster(search) 
+            if poster:
                         await message.reply_photo(photo=poster, caption=f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
-            elif imdb:
+            else:
                 await message.reply_text(f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**"
             return
 
@@ -124,9 +127,11 @@ async def filter(client, message):
         ) 
         
         poster=None
-        if imdb and imdb.get('poster'):
+        if API_KEY:
+         poster=await get_poster(search)
+        if poster:
                 await message.reply_photo(photo=poster, caption=f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
-        elif imdb:
+        else:
             await message.reply_text(f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
@@ -137,7 +142,7 @@ async def group(client, message):
         btn = []
         
         search = message.text
-        reply.text = f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title}"
+        result_text = f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title}"
        
         nyva=BOT.get("username")
         if not nyva:
@@ -175,9 +180,11 @@ async def group(client, message):
             )
             buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])            
             poster=None
-            if imdb and imdb.get('poster'):
+            if API_KEY:
+              poster=await get_poster(search)
+            if poster:
                 await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
-            elif imdb:
+            else:
                             await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
@@ -200,7 +207,7 @@ async def group(client, message):
          poster=await get_poster(search)
         if poster:          
                        await message.reply_photo(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
-        elif imdb:
+        else:
                             await message.reply_text(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**"
 def get_size(size):
     """Get size in readable format"""
