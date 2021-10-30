@@ -105,9 +105,9 @@ async def filter(client, message):
             )
             buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
             poster=none
-                        await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                        await message.reply_photo(photo=poster, caption=f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
             elif imdb:
-                await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_text(f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**"
             return
 
         data = BUTTONS[keyword]
@@ -125,9 +125,9 @@ async def filter(client, message):
         
         poster=None
         if imdb and imdb.get('poster'):
-                       await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
         elif imdb:
-            await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
+            await message.reply_text(f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
 
 @Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
 async def group(client, message):
@@ -137,7 +137,7 @@ async def group(client, message):
         btn = []
         
         search = message.text
-        result_txt = f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10"
+        reply.text = f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title}"
        
         nyva=BOT.get("username")
         if not nyva:
@@ -178,7 +178,7 @@ async def group(client, message):
             if imdb and imdb.get('poster'):
                 await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             elif imdb:
-                 await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
+                            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -194,10 +194,14 @@ async def group(client, message):
              InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
             ]
         ) 
-        buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])           
+        buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
+        poster=None
+        if API_KEY:
+         poster=await get_poster(search)
+        if poster:          
                        await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
         elif imdb:
-            await message.reply_text(f"<b>Query: {search}</b> \n‌‌‌‌IMDb Data:\n\n🏷 Title: <a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year: <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10", reply_markup=InlineKeyboardMarkup(buttons))
+                            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
 
     
 def get_size(size):
