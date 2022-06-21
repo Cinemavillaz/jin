@@ -5,8 +5,10 @@ from pyrogram import Client, filters
 import re
 import random
 import asyncio
+
 from pyrogram.errors import UserNotParticipant
 from utils import get_filter_results, get_file_details, is_subscribed, get_poster
+
 BUTTONS = {}
 BOT = {}
 
@@ -25,7 +27,6 @@ VOTES = ["9221", "303", "56066", "373", "46026", "7736", "1294", "10311", "29458
 async def cb_data(bot, update):
     if update.data == "close":
         await update.message.delete()
-
 
 @Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
 async def filter(client, message):
@@ -110,8 +111,7 @@ async def filter(client, message):
             if poster:
                         await message.reply_photo(photo=poster, caption=f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                await message.reply_text(f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**"
-
+                await message.reply_text(f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**")
             return
 
         data = BUTTONS[keyword]
