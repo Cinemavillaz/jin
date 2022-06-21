@@ -111,7 +111,6 @@ async def filter(client, message):
                         await message.reply_photo(photo=poster, caption=f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
             else:
                 await message.reply_text(f"🎬 **Title: {search}**\n🌟 **Rating: {random.choice(RATING)}**\n🎭 **Genre: **{random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**"
-            return
 
         data = BUTTONS[keyword]
         buttons = data['buttons'][0].copy()
