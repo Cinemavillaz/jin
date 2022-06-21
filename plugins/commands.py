@@ -197,8 +197,8 @@ async def start(bot, cmd):
             )
         )
     else:
-        await cmd.reply_video(
-            video="https://telegra.ph/file/6306bc5b97d515edf150c.mp4",
+        await cmd.reply_photo(
+            photo=f"{random.choice (PHOTO)}",
             caption=START_MSG,
             reply_markup=InlineKeyboardMarkup(
                 [
