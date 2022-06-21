@@ -125,7 +125,13 @@ async def start(bot, cmd):
                 await bot.send_photo(
                     chat_id=cmd.from_user.id,
                     photo=f"{random.choice(PHOTO)}",
-                    caption="**🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 🤭\n\nനിങ്ങൾക് സിനിമകൾ വെന്നോ? അതിനായി അത്യം ങ്ങളുടെ മെയിൻ ചാനലിൽ ജോയിൻ ചെയ്യണം... 😁\nJoin ചെയ്ത ശേഷം വീണ്ടും ബോട്ട് /start ആക്കൂ.😁\nഎന്നിട്ട് ഒന്നുടെ Refresh ബട്ടൺ ക്ലിക്ക് ചെയ്താൽ മൂവി കിട്ടുന്നതാണ്..!**",
+                    caption=f"""**♦️ READ THIS INSTRUCTION ♦️
+
+🗣 നിങ്ങൾ ചോദിക്കുന്ന സിനിമകൾ നിങ്ങൾക്ക് ലഭിക്കണം എന്നുണ്ടെങ്കിൽ നിങ്ങൾ ഞങ്ങളുടെ ചാനലിൽ ജോയിൻ ചെയ്തിരിക്കണം. ജോയിൻ ചെയ്യാൻ " 📢 Join Main Channel 📢 "എന്ന ബട്ടണിലോ താഴെ കാണുന്ന ലിങ്കിലോ ക്ലിക്ക് ചെയ്യാവുന്നതാണ്. ജോയിൻ ചെയ്ത ശേഷം " 🔄 Try Again 🔄 " എന്ന ബട്ടണിൽ അമർത്തിയാൽ നിങ്ങൾക്ക് ഞാൻ ആ സിനിമ അയച്ചു തരുന്നതാണ്..😍
+
+🗣 In Order To Get The Movie Requested By You in Our Group, You Must Have To Join Our Official Channel First By Clicking " 📢 Join Main Channel 📢 " Button or the Link shown Below. After That, Click " 🔄 Try Again 🔄 " Button. I'll Send You That Movie 🙈
+
+👇JOIN MAIN CHANNEL & CLICK TRY AGAIN👇**""",
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
@@ -200,12 +206,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url= "https://t.me/Cv_links_project7_bot?startgroup=true")
                     ],
                     [
-                        InlineKeyboardButton("🔍 𝖲𝖾𝖺𝗋𝖼𝗁 𝖧𝖾𝗋𝖾", switch_inline_query_current_chat=''),
-                        InlineKeyboardButton("𝖦𝗋𝗈𝗎𝗉", url="https://t.me/cv_group1")
-                    ],
-                    [
-                        InlineKeyboardButton("🕵️‍♂️ 𝖢𝗋𝖾𝖺𝗍𝗈𝗋", url="https://t.me/Joel_TG"),
-                        InlineKeyboardButton("😊 𝖠𝖻𝗈𝗎𝗍", callback_data="about")
+                        InlineKeyboardButton("🔍 𝖲𝖾𝖺𝗋𝖼𝗁 𝖧𝖾𝗋𝖾", switch_inline_query_current_chat='')
                     ]    
                 ]
             )
@@ -290,7 +291,7 @@ async def delete(bot, message):
         await msg.edit('File is successfully deleted from database')
     else:
         await msg.edit('File not found in database')
-@Client.on_message(filters.command('about'))
+@Client.on_message(filters.command('vok'))
 async def bot_info(bot, message):
     buttons = [
         [
@@ -300,7 +301,7 @@ async def bot_info(bot, message):
         ]
     await message.reply(text="<b>ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/joel_bx'>ᴊᴏᴇʟ ʙx</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/Jinn-Of-Telegram/Media-Search-bot-V2'>Click here</a>\nUpdate Channel : <a href='https://t.me/ErrorXBotz'>ErrorXBotz</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
 
-@Client.on_message(filters.command('help'))
+@Client.on_message(filters.command('ok'))
 async def bot_info(bot, message):
     buttons = [
         [
