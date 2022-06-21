@@ -142,8 +142,9 @@ async def group(client, message):
         btn = []
         
         search = message.text
-        result_text = f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title}"
-       
+        result_txt =f"**Hey ||{message.from_user.mention}|| 👋,\n\n📁 Found ✨  Files For Your Query** : ||{search}||"
+        nothing_txt =f"**Couldn't Find This Movie.Try Again..! ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺**"
+      
         nyva=BOT.get("username")
         if not nyva:
             botusername=await client.get_me()
@@ -183,9 +184,9 @@ async def group(client, message):
             if API_KEY:
               poster=await get_poster(search)
             if poster:
-                await message.reply_photo(photo=poster, caption=f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
             else:
-                            await message.reply_text(f"**🎬 Title:** {search}\n**🌟 Rating:** {random.choice(RATING)}\n**🎭 Genre:** {random.choice(GENRES)}\n**🗳️ Votes:** {random.choice(VOTES)}\n**©️ {message.chat.title} 🍿**", reply_markup=InlineKeyboardMarkup(buttons))
+                            await message.reply_text(result_txt, reply_markup=InlineKeyboardMarkup(buttons))
             return
 
         data = BUTTONS[keyword]
@@ -206,9 +207,9 @@ async def group(client, message):
         if API_KEY:
          poster=await get_poster(search)
         if poster:          
-                       await message.reply_photo(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**", reply_markup=InlineKeyboardMarkup(buttons))
+                       await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
         else:
-                            await message.reply_text(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}**\n🗳️ **Votes: {random.choice(VOTES)}**\n🗣️** Requested BY**{message.from_user.mention}**\n\n♻️ **{message.chat.title}**"
+                            await message.reply_text(result_txt)
 def get_size(size):
     """Get size in readable format"""
 
