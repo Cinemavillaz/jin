@@ -39,8 +39,6 @@ START_MSG = ("""<i>𝖧𝗂 {},
 
 𝖨 𝖺𝗆 𝖺𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝖽 𝖠𝗎𝗍𝗈-𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍, 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉 , 𝗆𝖺𝗄𝖾 𝗆𝖾 𝖺𝖽𝗆𝗂𝗇 𝖺𝗇𝖽 𝗌𝖾𝖾 𝗆𝗒 𝗉𝗈𝗐𝖾𝗋...😝🔥</i>""")
 
-START_MSG = environ.get('START_MSG')
-
 FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", "")
 OMDB_API_KEY = environ.get("OMDB_API_KEY", "")
 if FILE_CAPTION.strip() == "":
