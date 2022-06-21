@@ -8,12 +8,101 @@ from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 import random
 
-PHOTO = [
-    "https://telegra.ph/file/0a37f338a47ab2a909997.jpg",
-    "https://telegra.ph/file/9be92d8a94f53bf6d6192.jpg",
-    "https://telegra.ph/file/1c4dc6991b182c4af1512.jpg",
-    "https://telegra.ph/file/400882986bb62bab8940d.jpg"
+STIC = [
+   "CAACAgUAAxkBAAL3QmKxNmOGK1asO2JM8rXswrMKiEbHAAI0BgAC7PqIVQuDVXkLjbCBHgQ",
+   "CAACAgUAAxkBAAL2L2KoP8wjwlnGTMZstkElNgbD8Q6_AAJmBAACJc9JVUVLJ5WeBKRRHgQ",
+   "CAACAgUAAxkBAAL3RmKxN8H37RUi3cw-RwtGLQuvGUQzAAJ-BwACYW6JVQWVTdZPEq_AHgQ",
+   "CAACAgUAAxkBAAL3SWKxOIrtlBUCtKjMGuZfbBK9JW_QAALmBgACk4SRVRwfwrFgMFVHHgQ",
+   "CAACAgUAAxkBAAL3TGKxOUPnaKUQOA_UXNceSCdwHSMBAAIoBQAC4EyIVQR-bKf2BycOHgQ",
+   "CAACAgUAAxkBAAL3T2KxOe3u3v6jHrH3QcfHcB_k2UtXAAJTBgACp_WJVYmZPIemRPBvHgQ",
+   "CAACAgUAAxkBAAL3UmKxOyDCY9DDPJDabMbxkcafsOKGAALcBQACfRWIVWGUTf6LO-_gHgQ",
+   "CAACAgUAAxkBAAL3VWKxO89cB1JLqp-HSb1KkEpedeueAALQBQACYgyJVQxUAAFjQmEfwh4E",
+   "CAACAgUAAxkBAAL3WGKxPOLXWrhui87y5JZ6xfDRIKsNAALEBgACt1SJVc_2lBbPjn-MHgQ"
 ]
+
+PHOTO = [
+    "https://telegra.ph/file/9c47001f468a7d8ec3b85.jpg",
+    "https://telegra.ph/file/f3fb811e5b75175dbe6a2.jpg",
+    "https://telegra.ph/file/011b4087cdb8a0d07644f.jpg",
+    "https://telegra.ph/file/2c980314c0cdc1b9e2058.jpg",
+    "https://telegra.ph/file/e5f6428c770586043f90d.jpg",
+    "https://telegra.ph/file/b305e461514ff4919dcf9.jpg",
+    "https://telegra.ph/file/6b07d1e8b92b438de4e12.jpg",
+    "https://telegra.ph/file/b3e3417cdc4ec08241434.jpg",
+    "https://telegra.ph/file/6af9875a9a3a6c665ac6d.jpg",
+    "https://telegra.ph/file/91c596e85fde3e0aae79f.jpg",
+    "https://telegra.ph/file/56398140fae3873a56898.jpg",
+    "https://telegra.ph/file/dec15fb3bc3f0bc22880a.jpg",
+    "https://telegra.ph/file/09ffd32fd9c4984078219.jpg",
+    "https://telegra.ph/file/05e04a3b08b30c815a322.jpg",
+    "https://telegra.ph/file/f6f599389f7563c8385a6.jpg",
+    "https://telegra.ph/file/561fe647eee3a0b1bc3c8.jpg",
+    "https://telegra.ph/file/e1efa9565ace2324614ff.jpg",
+    "https://telegra.ph/file/b9585457e6ae7cc834ac6.jpg",
+    "https://telegra.ph/file/444af460ab9785d52e229.jpg",
+    "https://telegra.ph/file/05931986e2599d0ee6815.jpg",
+    "https://telegra.ph/file/968cbb7c6b04b776ff26e.jpg",
+    "https://telegra.ph/file/40815aab00039f9e5db8b.jpg",
+    "https://telegra.ph/file/34bafb8438ad3ef47ae78.jpg",
+    "https://telegra.ph/file/cf32ae611eb37862e61d5.jpg",
+    "https://telegra.ph/file/f9303edef6f4a16c525ae.jpg",
+    "https://telegra.ph/file/03430ea064121f11decb8.jpg",
+    "https://telegra.ph/file/e9ddab724643c871d01ad.jpg",
+    "https://telegra.ph/file/feb7b9cfa5ec5cfdd5892.jpg",
+    "https://telegra.ph/file/15f3895c6b4dee389853d.jpg",
+    "https://telegra.ph/file/c62f47b1a990b8c8b184f.jpg",
+    "https://telegra.ph/file/f20ae180f58812d1b9c58.jpg",
+    "https://telegra.ph/file/4f0b51842b0849c4bd069.jpg",
+    "https://telegra.ph/file/f1ec16bc10c73b65764d7.jpg",
+    "https://telegra.ph/file/e61e351e3913966cca46c.jpg",
+    "https://telegra.ph/file/e5c2931d3f93808c7ab43.jpg",
+    "https://telegra.ph/file/0315a61c48943ac0fd2ce.jpg",
+    "https://telegra.ph/file/0ebd004f4332bd69bb86d.jpg",
+    "https://telegra.ph/file/974e9eb7d1cd032aa75c5.jpg",
+    "https://telegra.ph/file/e0ed2d5dfdb8ee0680021.jpg",
+    "https://telegra.ph/file/50f89bfd69dc6ceff0cb9.jpg"
+]
+
+kissme=db=("DATABASE_URI, DATABASE_NAME")
+
+LUVME = os.environ.get("LUVME")
+
+MAN = (ADMINS)
+       
+@Client.on_message((filters.private | filters.group) & filters.command('setcaption'))
+async def filecap(client, message): 
+    if MAN:
+        msg = await message.reply("**Only Admins Can Operate That Damn Command ‼️**", quote=True)
+         
+@Client.on_message(filters.command(["broadcast"]) & filters.user(ADMINS) & filters.private, group=5)
+async def broadcast(bot, update):
+    await send_broadcast(bot, update, kissme, send_msg, temp)
+
+@Client.on_message(filters.command(['Superman']))
+async def about(bot, message):
+    msg = await message.reply_sticker(
+        sticker=f"{random.choice(STIC)}"
+    )
+    await asyncio.sleep(5)
+    await msg.edit("CAACAgUAAxkBAAL2NGKoYpSJMGHfdgO5Vgfq5JvLNtmFAALQAwACXk9JVXcj4EoZYYS5HgQ")
+
+@Client.on_message(filters.command(['trelease']))
+async def help(client, message):
+    msg = await message.reply_photo(
+        photo="https://telegra.ph/file/eaea5e4d4ea7bfbfdb857.jpg",
+        caption=(f"**▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nToday Released Movies :\n\n<i>{LUVME}</i>\n\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬**")
+    )
+    await asyncio.sleep(600)
+    await msg.edit("𝖩𝗎𝗌𝗍 𝖠𝖽𝖽 𝖬𝖾 𝖨𝗇 𝖠 𝖦𝗋𝗈𝗎𝗉 𝖠𝗇𝖽 𝖱𝖾𝗊𝗎𝖾𝗌𝗍 𝖠𝗅𝗅 𝖬𝗈𝗏𝗂𝖾𝗌 / 𝖲𝖾𝗋𝗂𝖾𝗌 𝖳𝗁𝖾𝗋𝖾 !!")
+    
+@Client.on_message(filters.command(['restart']) & filters.user(ADMINS))
+async def restart(client, message):
+    msg = await message.reply_text(
+        text="<i>Trying to restarting.....</i>"
+    )
+    await asyncio.sleep(5)
+    await msg.edit("<i>Server restarted successfully ✅</i>")
+    os.execl(sys.executable, sys.executable, *sys.argv)
 
 @Client.on_message(filters.command("start"))
 async def start(bot, cmd):
