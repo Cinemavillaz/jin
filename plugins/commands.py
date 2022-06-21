@@ -105,15 +105,15 @@ async def restart(client, message):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 @Client.on_message(filters.command("start"))
-async def start(bot, cmd):
+async def start(message, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
-            invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
+            invite_link = await message.create_chat_invite_link(int(AUTH_CHANNEL))
             try:
-                user = await bot.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
+                user = await message.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
                 if user.status == "kicked":
-                    await bot.send_message(
+                    await message.send_message(
                         chat_id=cmd.from_user.id,
                         text="Sorry Sir, You are Banned to use me.",
                         parse_mode="HTML",
@@ -122,7 +122,7 @@ async def start(bot, cmd):
                     return
             except UserNotParticipant:
                 ident, file_id = cmd.text.split("_-_-_-_")
-                await bot.send_photo(
+                await cmd.send_photo(
                     chat_id=cmd.from_user.id,
                     photo=f"{random.choice(PHOTO)}",
                     caption=f"""**♦️ READ THIS INSTRUCTION ♦️
@@ -146,7 +146,7 @@ async def start(bot, cmd):
                 )
                 return
             except Exception:
-                await bot.send_message(
+                await cmd.send_message(
                     chat_id=cmd.from_user.id,
                     text="Something went Wrong.",
                     parse_mode="HTML",
@@ -174,7 +174,7 @@ async def start(bot, cmd):
                         InlineKeyboardButton('ꜱʜᴀʀᴇ ᴜꜱ', url='https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl')
                     ]
                     ]
-                await bot.send_cached_media(
+                await cmd.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
                     caption=f_caption,
@@ -197,15 +197,15 @@ async def start(bot, cmd):
             )
         )
     else:
-        await bot.reply_photo(
+        await cmd.reply_photo(
             photo=f"{random.choice (PHOTO)}",
-            caption=f"<i>𝖧𝗂 {chat_id},
+            caption=(f"""<i>𝖧𝗂 {message.from_user.mention},
 
-𝖨 𝖺𝗆 𝖺𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝖽 𝖠𝗎𝗍𝗈-𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍, 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉 , 𝗆𝖺𝗄𝖾 𝗆𝖾 𝖺𝖽𝗆𝗂𝗇 𝖺𝗇𝖽 𝗌𝖾𝖾 𝗆𝗒 𝗉𝗈𝗐𝖾𝗋...😝🔥</i>",
+𝖨 𝖺𝗆 𝖺𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝖽 𝖠𝗎𝗍𝗈-𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍, 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉 , 𝗆𝖺𝗄𝖾 𝗆𝖾 𝖺𝖽𝗆𝗂𝗇 𝖺𝗇𝖽 𝗌𝖾𝖾 𝗆𝗒 𝗉𝗈𝗐𝖾𝗋...😝🔥</i>""") 
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url= "https://t.me/Cv_links_project7_bot?startgroup=true")
+                        InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url= "https://t.me/TheSupermanRoBoT?startgroup=true")
                     ],
                     [
                         InlineKeyboardButton("🔍 𝖲𝖾𝖺𝗋𝖼𝗁 𝖧𝖾𝗋𝖾", switch_inline_query_current_chat='')
