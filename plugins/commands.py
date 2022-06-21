@@ -8,10 +8,6 @@ from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
 import random
 
-START_MSG =(f"""<i>𝖧𝗂 {message.from_user.mention},
-
-𝖨 𝖺𝗆 𝖺𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝖽 𝖠𝗎𝗍𝗈-𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍, 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉 , 𝗆𝖺𝗄𝖾 𝗆𝖾 𝖺𝖽𝗆𝗂𝗇 𝖺𝗇𝖽 𝗌𝖾𝖾 𝗆𝗒 𝗉𝗈𝗐𝖾𝗋...😝🔥</i>""")
-
 STIC = [
    "CAACAgUAAxkBAAL3QmKxNmOGK1asO2JM8rXswrMKiEbHAAI0BgAC7PqIVQuDVXkLjbCBHgQ",
    "CAACAgUAAxkBAAL2L2KoP8wjwlnGTMZstkElNgbD8Q6_AAJmBAACJc9JVUVLJ5WeBKRRHgQ",
@@ -203,7 +199,9 @@ async def start(bot, cmd):
     else:
         await cmd.reply_photo(
             photo=f"{random.choice (PHOTO)}",
-            caption=START_MSG,
+            caption=f"<i>𝖧𝗂 {bot.from_user.mention},
+
+𝖨 𝖺𝗆 𝖺𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝖽 𝖠𝗎𝗍𝗈-𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍, 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉 , 𝗆𝖺𝗄𝖾 𝗆𝖾 𝖺𝖽𝗆𝗂𝗇 𝖺𝗇𝖽 𝗌𝖾𝖾 𝗆𝗒 𝗉𝗈𝗐𝖾𝗋...😝🔥</i>",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
