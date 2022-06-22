@@ -104,7 +104,7 @@ async def filter(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
-            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
+            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatezz')])
             poster=none
             if API_KEY:
               poster=await get_poster(search) 
@@ -179,7 +179,7 @@ async def group(client, message):
             buttons.append(
                 [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
             )
-            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])            
+            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatezz')])            
             poster=None
             if API_KEY:
               poster=await get_poster(search)
