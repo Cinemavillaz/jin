@@ -105,15 +105,15 @@ async def restart(client, message):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 @Client.on_message(filters.command("start"))
-async def start(message, cmd):
+async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
-            invite_link = await message.create_chat_invite_link(int(AUTH_CHANNEL))
+            invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
             try:
-                user = await message.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
+                user = await bot.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
                 if user.status == "kicked":
-                    await message.send_message(
+                    await bot.send_message(
                         chat_id=cmd.from_user.id,
                         text="Sorry Sir, You are Banned to use me.",
                         parse_mode="HTML",
@@ -174,7 +174,7 @@ async def start(message, cmd):
                         InlineKeyboardButton('ꜱʜᴀʀᴇ ᴜꜱ', url='https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl')
                     ]
                     ]
-                await cmd.send_cached_media(
+                await bot.send_cached_media(
                     chat_id=cmd.from_user.id,
                     file_id=file_id,
                     caption=f_caption,
