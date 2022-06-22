@@ -63,6 +63,8 @@ PHOTO = [
     "https://telegra.ph/file/50f89bfd69dc6ceff0cb9.jpg"
 ]
 
+luv = cmd
+
 kissme=db=("DATABASE_URI, DATABASE_NAME")
 
 LUVME = os.environ.get("LUVME")
