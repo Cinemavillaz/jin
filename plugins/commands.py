@@ -135,7 +135,7 @@ async def start(bot, cmd):
                     reply_markup=InlineKeyboardMarkup(
                         [
                             [
-                                InlineKeyboardButton("📌 ᴊᴏɪɴ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", url=invite_link.invite_link) 
+                                InlineKeyboardButton("ᴊᴏɪɴ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ ↗️", url=invite_link.invite_link) 
                             ],
                             [
                                 InlineKeyboardButton("ʀᴇꜰʀᴇꜱʜ ↺", callback_data=f"checksub#{file_id}")
@@ -170,8 +170,7 @@ async def start(bot, cmd):
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('ꜱᴇᴀʀᴄʜ ᴀɢᴀɪɴ', switch_inline_query_current_chat=''),
-                        InlineKeyboardButton('ꜱʜᴀʀᴇ ᴜꜱ', url='https://t.me/share/url?url=https://t.me/joinchat/o0habe6377I5MDhl')
+                        InlineKeyboardButton('ꜱᴇᴀʀᴄʜ ᴀɢᴀɪɴ 🔎', switch_inline_query_current_chat='')
                     ]
                     ]
                 await bot.send_cached_media(
