@@ -1,5 +1,6 @@
 import os
 import logging, asyncio 
+from Script import script
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -199,9 +200,7 @@ async def start(message, cmd):
     else:
         await cmd.reply_photo(
             photo=f"{random.choice (PHOTO)}",
-            caption=("""<i>𝖧𝗂 {query.from_user.mention},
-
-𝖨 𝖺𝗆 𝖺𝗇 𝖠𝖽𝗏𝖺𝗇𝖼𝖾𝖽 𝖠𝗎𝗍𝗈-𝖿𝗂𝗅𝗍𝖾𝗋 𝖻𝗈𝗍, 𝖠𝖽𝖽 𝗆𝖾 𝗍𝗈 𝗒𝗈𝗎𝗋 𝗀𝗋𝗈𝗎𝗉 , 𝗆𝖺𝗄𝖾 𝗆𝖾 𝖺𝖽𝗆𝗂𝗇 𝖺𝗇𝖽 𝗌𝖾𝖾 𝗆𝗒 𝗉𝗈𝗐𝖾𝗋...😝🔥</i>"""),
+            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
