@@ -1,9 +1,8 @@
 import os
 import logging, asyncio 
-from Script import script
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, START_MSG
 from utils import Media, get_file_details
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
@@ -200,7 +199,7 @@ async def start(message, cmd):
     else:
         await cmd.reply_photo(
             photo=f"{random.choice (PHOTO)}",
-            caption=script.START_TXT.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
+            caption=START_MSG.format(message.from_user.mention, temp.U_NAME, temp.B_NAME),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
