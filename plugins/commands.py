@@ -200,7 +200,7 @@ async def start(bot, cmd):
     else:
         await cmd.reply_photo(
             photo=f"{random.choice (PHOTO)}",
-            caption=START_MSG.format(cmd.from_user.mention),
+            caption=START_MSG.format(luv.from_user.mention),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
