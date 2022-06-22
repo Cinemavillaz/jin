@@ -1,0 +1,3 @@
+class script(object):
+START_MSG = """
+"""
