@@ -122,7 +122,7 @@ async def start(bot, cmd):
                     return
             except UserNotParticipant:
                 ident, file_id = cmd.text.split("_-_-_-_")
-                await cmd.send_photo(
+                await bot.send_photo(
                     chat_id=cmd.from_user.id,
                     photo=f"{random.choice(PHOTO)}",
                     caption=f"""**♦️ READ THIS INSTRUCTION ♦️
