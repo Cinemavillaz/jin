@@ -63,8 +63,6 @@ PHOTO = [
     "https://telegra.ph/file/50f89bfd69dc6ceff0cb9.jpg"
 ]
 
-luv = cmd
-
 kissme=db=("DATABASE_URI, DATABASE_NAME")
 
 LUVME = os.environ.get("LUVME")
@@ -200,7 +198,7 @@ async def start(bot, cmd):
     else:
         await cmd.reply_photo(
             photo=f"{random.choice (PHOTO)}",
-            caption=START_MSG.format(luv.from_user.mention),
+            caption=START_MSG.format(cmd.from_user.mention),
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
