@@ -2,7 +2,7 @@ import os
 import logging, asyncio 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, START_MSG
+from info import CHANNELS, ADMINS, CUSTOM_FILE_CAPTION, START_MSG
 from utils import Media, get_file_details
 from pyrogram.errors import UserNotParticipant
 logger = logging.getLogger(__name__)
@@ -63,6 +63,10 @@ PHOTO = [
     "https://telegra.ph/file/50f89bfd69dc6ceff0cb9.jpg"
 ]
 
+AUTH_CHANNEL = ["-1001744938590", "-1001678762161"]
+
+plswork = {random.choice(AUTH_CHANNEL)}
+
 kissme=db=("DATABASE_URI, DATABASE_NAME")
 
 LUVME = os.environ.get("LUVME")
@@ -109,9 +113,9 @@ async def start(bot, cmd):
     usr_cmdall1 = cmd.text
     if usr_cmdall1.startswith("/start subinps"):
         if AUTH_CHANNEL:
-            invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
+            invite_link = plswork
             try:
-                user = await bot.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
+                user = await bot.get_chat_member(int(plswork), cmd.from_user.id)
                 if user.status == "kicked":
                     await bot.send_message(
                         chat_id=cmd.from_user.id,
