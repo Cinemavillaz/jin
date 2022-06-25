@@ -11,7 +11,7 @@ from marshmallow.exceptions import ValidationError
 import os
 import PTN
 import requests
-import json
+import json, random
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, API_KEY
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
 DATABASE_NAME_2=os.environ.get('DATABASE_NAME_2', DATABASE_NAME)
@@ -20,7 +20,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 AUTH_CHANNEL = ["-1001744938590", "-1001678762161"]
-
 plswork = {random.choice(AUTH_CHANNEL)}
 
 client = AsyncIOMotorClient(DATABASE_URI)
