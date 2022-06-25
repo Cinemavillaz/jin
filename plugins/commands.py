@@ -5,7 +5,6 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, START_MSG
 from utils import Media, get_file_details
 from pyrogram.errors import UserNotParticipant
-logger = logging.getLogger(name)
 
 STIC = [
    "CAACAgUAAxkBAAL3QmKxNmOGK1asO2JM8rXswrMKiEbHAAI0BgAC7PqIVQuDVXkLjbCBHgQ",
