@@ -16,7 +16,7 @@ cache_time = 0 if AUTH_USERS or plswork else CACHE_TIME
 async def answer(bot, query):
     """Show search results for given inline query"""
 
-    if AUTH_CHANNEL and not await is_subscribed(bot, query):
+    if plswork and not await is_subscribed(bot, query):
         await query.answer(results=[],
                            cache_time=0,
                            switch_pm_text='You have to subscribe my channel to use the bot',
