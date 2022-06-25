@@ -1,6 +1,6 @@
 import re
 import base64
-import logging
+import logging, random
 from struct import pack
 from pyrogram.errors import UserNotParticipant
 from pyrogram.file_id import FileId
@@ -11,7 +11,7 @@ from marshmallow.exceptions import ValidationError
 import os
 import PTN
 import requests
-import json, random
+import json
 from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, API_KEY
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
 DATABASE_NAME_2=os.environ.get('DATABASE_NAME_2', DATABASE_NAME)
