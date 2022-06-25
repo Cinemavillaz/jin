@@ -1,341 +1,160 @@
-#Kanged From @TroJanZheX
-from info import AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+import os
+import logging, asyncio 
 from pyrogram import Client, filters
-import re
-import random
-import asyncio
-
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, START_MSG
+from utils import Media, get_file_details
 from pyrogram.errors import UserNotParticipant
-from utils import get_filter_results, get_file_details, is_subscribed, get_poster
+logger = logging.getLogger(name)
+import random
 
-BUTTONS = {}
-BOT = {}
+STIC = [
+   "CAACAgUAAxkBAAL3QmKxNmOGK1asO2JM8rXswrMKiEbHAAI0BgAC7PqIVQuDVXkLjbCBHgQ",
+   "CAACAgUAAxkBAAL2L2KoP8wjwlnGTMZstkElNgbD8Q6_AAJmBAACJc9JVUVLJ5WeBKRRHgQ",
+   "CAACAgUAAxkBAAL3RmKxN8H37RUi3cw-RwtGLQuvGUQzAAJ-BwACYW6JVQWVTdZPEq_AHgQ",
+   "CAACAgUAAxkBAAL3SWKxOIrtlBUCtKjMGuZfbBK9JW_QAALmBgACk4SRVRwfwrFgMFVHHgQ",
+   "CAACAgUAAxkBAAL3TGKxOUPnaKUQOA_UXNceSCdwHSMBAAIoBQAC4EyIVQR-bKf2BycOHgQ",
+   "CAACAgUAAxkBAAL3T2KxOe3u3v6jHrH3QcfHcB_k2UtXAAJTBgACp_WJVYmZPIemRPBvHgQ",
+   "CAACAgUAAxkBAAL3UmKxOyDCY9DDPJDabMbxkcafsOKGAALcBQACfRWIVWGUTf6LO-_gHgQ",
+   "CAACAgUAAxkBAAL3VWKxO89cB1JLqp-HSb1KkEpedeueAALQBQACYgyJVQxUAAFjQmEfwh4E",
+   "CAACAgUAAxkBAAL3WGKxPOLXWrhui87y5JZ6xfDRIKsNAALEBgACt1SJVc_2lBbPjn-MHgQ"
+]
 
-AUTH_CHANNEL = ["-1001678762161", "-1001744938590"]
+PHOTO = [
+    "https://telegra.ph/file/9c47001f468a7d8ec3b85.jpg",
+    "https://telegra.ph/file/f3fb811e5b75175dbe6a2.jpg",
+    "https://telegra.ph/file/011b4087cdb8a0d07644f.jpg",
+    "https://telegra.ph/file/2c980314c0cdc1b9e2058.jpg",
+    "https://telegra.ph/file/e5f6428c770586043f90d.jpg",
+    "https://telegra.ph/file/b305e461514ff4919dcf9.jpg",
+    "https://telegra.ph/file/6b07d1e8b92b438de4e12.jpg",
+    "https://telegra.ph/file/b3e3417cdc4ec08241434.jpg",
+    "https://telegra.ph/file/6af9875a9a3a6c665ac6d.jpg",
+    "https://telegra.ph/file/91c596e85fde3e0aae79f.jpg",
+    "https://telegra.ph/file/56398140fae3873a56898.jpg",
+    "https://telegra.ph/file/dec15fb3bc3f0bc22880a.jpg",
+    "https://telegra.ph/file/09ffd32fd9c4984078219.jpg",
+    "https://telegra.ph/file/05e04a3b08b30c815a322.jpg",
+    "https://telegra.ph/file/f6f599389f7563c8385a6.jpg",
+    "https://telegra.ph/file/561fe647eee3a0b1bc3c8.jpg",
+    "https://telegra.ph/file/e1efa9565ace2324614ff.jpg",
+    "https://telegra.ph/file/b9585457e6ae7cc834ac6.jpg",
+    "https://telegra.ph/file/444af460ab9785d52e229.jpg",
+    "https://telegra.ph/file/05931986e2599d0ee6815.jpg",
+    "https://telegra.ph/file/968cbb7c6b04b776ff26e.jpg",
+    "https://telegra.ph/file/40815aab00039f9e5db8b.jpg",
+    "https://telegra.ph/file/34bafb8438ad3ef47ae78.jpg",
+    "https://telegra.ph/file/cf32ae611eb37862e61d5.jpg",
+    "https://telegra.ph/file/f9303edef6f4a16c525ae.jpg",
+    "https://telegra.ph/file/03430ea064121f11decb8.jpg",
+    "https://telegra.ph/file/e9ddab724643c871d01ad.jpg",
+    "https://telegra.ph/file/feb7b9cfa5ec5cfdd5892.jpg",
+    "https://telegra.ph/file/15f3895c6b4dee389853d.jpg",
+    "https://telegra.ph/file/c62f47b1a990b8c8b184f.jpg",
+    "https://telegra.ph/file/f20ae180f58812d1b9c58.jpg",
+    "https://telegra.ph/file/4f0b51842b0849c4bd069.jpg",
+    "https://telegra.ph/file/f1ec16bc10c73b65764d7.jpg",
+    "https://telegra.ph/file/e61e351e3913966cca46c.jpg",
+    "https://telegra.ph/file/e5c2931d3f93808c7ab43.jpg",
+    "https://telegra.ph/file/0315a61c48943ac0fd2ce.jpg",
+    "https://telegra.ph/file/0ebd004f4332bd69bb86d.jpg",
+    "https://telegra.ph/file/974e9eb7d1cd032aa75c5.jpg",
+    "https://telegra.ph/file/e0ed2d5dfdb8ee0680021.jpg",
+    "https://telegra.ph/file/50f89bfd69dc6ceff0cb9.jpg"
+]
 
-plswork = {random.choice(AUTH_CHANNEL)}
+kissme=db=("DATABASE_URI, DATABASE_NAME")
 
-RATING = ["5.1/10 | IMDB", "6.2/10 | IMDB", "7.3/10 | IMDB", "8.4/10 | IMDB", "9.5/10 | IMDB"]
-GENRES = ["fun, fact",
-         "Thriller, Comedy",
-         "Drama, Comedy",
-         "Family, Drama",
-         "Action, Adventure",
-         "Film Noir",
-         "Documentary"]
-VOTES = ["9221", "303", "56066", "373", "46026", "7736", "1294", "10311", "29458", "372624", "30959", "17725", "25186", "4629", "36926", "463802", "36291", "36281", "294628"]
+LUVME = os.environ.get("LUVME")
 
+MAN = (ADMINS)
+       
+@Client.on_message((filters.private | filters.group) & filters.command('setcaption'))
+async def filecap(client, message): 
+    if MAN:
+        msg = await message.reply("Only Admins Can Operate That Damn Command ‼️", quote=True)
+         
+@Client.on_message(filters.command(["broadcast"]) & filters.user(ADMINS) & filters.private, group=5)
+async def broadcast(bot, update):
+    await send_broadcast(bot, update, kissme, send_msg, temp)
 
-@Client.on_callback_query()
-async def cb_data(bot, update):
-    if update.data == "close":
-        await update.message.delete()
+@Client.on_message(filters.command(['Superman']))
+async def about(bot, message):
+    msg = await message.reply_sticker(
+        sticker=f"{random.choice(STIC)}"
+    )
+    await asyncio.sleep(5)
+    await msg.edit("CAACAgUAAxkBAAL2NGKoYpSJMGHfdgO5Vgfq5JvLNtmFAALQAwACXk9JVXcj4EoZYYS5HgQ")
 
-@Client.on_message(filters.text & filters.private & filters.incoming & filters.user(AUTH_USERS) if AUTH_USERS else filters.text & filters.private & filters.incoming)
-async def filter(client, message):
-    if message.text.startswith("/"):
-        return
-    if AUTH_CHANNEL:
-        invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        try:
-            user = await client.get_chat_member(int(AUTH_CHANNEL), message.from_user.id)
-            if user.status == "kicked":
-                await client.send_message(
-                    chat_id=message.from_user.id,
-                    text="Sorry Sir, You are Banned to use me.",
-                    parse_mode="markdown",
+@Client.on_message(filters.command(['trelease']))
+async def help(client, message):
+    msg = await message.reply_photo(
+        photo="https://telegra.ph/file/eaea5e4d4ea7bfbfdb857.jpg",
+        caption=(f"▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nToday Released Movies :\n\n<i>{LUVME}</i>\n\n▬▬▬▬▬▬▬▬▬▬▬▬▬▬")
+    )
+    await asyncio.sleep(600)
+    await msg.edit("𝖩𝗎𝗌𝗍 𝖠𝖽𝖽 𝖬𝖾 𝖨𝗇 𝖠 𝖦𝗋𝗈𝗎𝗉 𝖠𝗇𝖽 𝖱𝖾𝗊𝗎𝖾𝗌𝗍 𝖠𝗅𝗅 𝖬𝗈𝗏𝗂𝖾𝗌 / 𝖲𝖾𝗋𝗂𝖾𝗌 𝖳𝗁𝖾𝗋𝖾 !!")
+    
+@Client.on_message(filters.command(['restart']) & filters.user(ADMINS))
+async def restart(client, message):
+    msg = await message.reply_text(
+        text="<i>Trying to restarting.....</i>"
+    )
+    await asyncio.sleep(5)
+    await msg.edit("<i>Server restarted successfully ✅</i>")
+    os.execl(sys.executable, sys.executable, *sys.argv)
+
+@Client.on_message(filters.command("start"))
+async def start(bot, cmd):
+    usr_cmdall1 = cmd.text
+    if usr_cmdall1.startswith("/start subinps"):
+        if AUTH_CHANNEL:
+            invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
+            try:
+                user = await bot.get_chat_member(int(AUTH_CHANNEL), cmd.from_user.id)
+                if user.status == "kicked":
+                    await bot.send_message(
+                        chat_id=cmd.from_user.id,
+                        text="Sorry Sir, You are Banned to use me.",
+                        parse_mode="HTML",
+                        disable_web_page_preview=True
+                    )
+                    return
+            except UserNotParticipant:
+                ident, file_id = cmd.text.split("_-_-_-_")
+                await bot.send_photo(
+                    chat_id=cmd.from_user.id,
+                    photo=f"{random.choice(PHOTO)}",
+                    caption="""♦️ 𝗥𝗘𝗔𝗗 𝗧𝗛𝗜𝗦 𝗜𝗡𝗦𝗧𝗥𝗨𝗖𝗧𝗜𝗢𝗡 ♦️
+
+<b>🗣 <i>നിങ്ങൾ ചോദിക്കുന്ന സിനിമകൾ നിങ്ങൾക്ക് ലഭിക്കണം എന്നുണ്ടെങ്കിൽ നിങ്ങൾ ഞങ്ങളുടെ ചാനലിൽ ജോയിൻ ചെയ്തിരിക്കണം. ജോയിൻ ചെയ്യാൻ " 📢 𝗝𝗼𝗶𝗻 𝗠𝗮𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢 "എന്ന ബട്ടണിലോ താഴെ കാണുന്ന ലിങ്കിലോ ക്ലിക്ക് ചെയ്യാവുന്നതാണ്. ജോയിൻ ചെയ്ത ശേഷം " 🔄 𝗧𝗿𝘆 𝗔𝗴𝗮𝗶𝗻 🔄 " എന്ന ബട്ടണിൽ അമർത്തിയാൽ നിങ്ങൾക്ക് ഞാൻ ആ സിനിമ അയച്ചു തരുന്നതാണ്..😍
+
+🗣 In Order To Get The Movie Requested By You in Our Group, You Must Have To Join Our Official Channel First By Clicking " 📢 𝗝𝗼𝗶𝗻 𝗠𝗮𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 📢 " Button or the Link shown Below. After That, Click " 🔄 𝗧𝗿𝘆 𝗔𝗴𝗮𝗶𝗻 🔄 " Button. I'll Send You That Movie 🙈</b>
+
+👇𝗝𝗼𝗶𝗻 𝗠𝗮𝗶𝗻 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 & 𝗖𝗟𝗜𝗖𝗞 𝗧𝗥𝗬 𝗔𝗚𝗔𝗜𝗡</i>👇""",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton("ᴊᴏɪɴ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ ↗️", url=invite_link.invite_link) 
+                            ],
+                            [
+                                InlineKeyboardButton("ʀᴇꜰʀᴇꜱʜ ↺", callback_data=f"checksub#{file_id}")
+                            ]
+                        ]
+                    ),
+                    parse_mode="HTML"
+                )
+                return
+            except Exception:
+                await cmd.send_message(
+                    chat_id=cmd.from_user.id,
+                    text="Something went Wrong.",
+                    parse_mode="HTML",
                     disable_web_page_preview=True
                 )
                 return
-        except UserNotParticipant:
-            await client.send_message(
-                chat_id=message.from_user.id,
-                text="Please Join My Updates Channel to use this Bot!",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)
-                        ]
-                    ] 
-                ),
-                parse_mode="markdown"
-            )
-            return
-        except Exception:
-            await client.send_photo(
-                chat_id=message.from_user.id,
-                photo="https://telegra.ph/file/ff75af2798e2d3dcc7a91.jpg",
-                text="Something went Wrong.",
-                parse_mode="markdown",
-                disable_web_page_preview=True
-            )
-            return
-    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-        return
-    if 2 < len(message.text) < 100:    
-        btn = [] 
-        search = message.text
-        files = await get_filter_results(query=search)
-        if files:
-            for file in files:
-                file_id = file.file_id
-                filename = file.file_name
-                file_size = get_size(file.file_size)
-                file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
-                btn.append(
-                    [
-                            InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
-                            InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
-                    ]   
-                )          
-        else:
-            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgUAAxkBAAID5WFmS1d1T-sETWIs7NgS6C7cAvqIAAKzAwAC3qnpVHxGZ4Q6pqbdHgQ')
-            return
-
-        if not btn:
-            return
-
-        if len(btn) > 10:
-
-btns = list(split_list(btn, 10)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
-        else:
-            buttons = btn
-            buttons.append(
-                [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
-            )
-            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatezz')])
-            poster=none
-            if API_KEY:
-              poster=await get_poster(search) 
-            if poster:
-                        await message.reply_photo(photo=poster, caption=f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}\n🗳️ Votes: {random.choice(VOTES)}\n🗣️ Requested BY{message.from_user.mention}\n\n♻️ {message.chat.title}", reply_markup=InlineKeyboardMarkup(buttons))
-            else:
-                await message.reply_text(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}\n🗳️ Votes: {random.choice(VOTES)}\n🗣️ Requested BY{message.from_user.mention}\n\n♻️ {message.chat.title}")
-            return
-
-        data = BUTTONS[keyword]
-        buttons = data['buttons'][0].copy()
-        buttons.append(
-            [InlineKeyboardButton(text="• ɢᴏ ᴛᴏ ɴᴇxᴛ ᴘᴀɢᴇ •",callback_data=f"next_0_{keyword}")]
-        )
-        buttons.append(
-            [InlineKeyboardButton(text="ᴘᴀɢᴇ",callback_data="pages2021"),
-             InlineKeyboardButton(text=f"1 - {data['total']}",callback_data="pages"),
-             InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
-            ]
-        ) 
-        
-        poster=None
-        if API_KEY:
-         poster=await get_poster(search)
-        if poster:
-                await message.reply_photo(photo=poster, caption=f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}\n🗳️ Votes: {random.choice(VOTES)}\n🗣️ Requested BY{message.from_user.mention}\n\n♻️ {message.chat.title}", reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-            await message.reply_text(f"🎬 Title: {search}\n🌟 Rating: {random.choice(RATING)}\n🎭 Genre: {random.choice(GENRES)}\n🗳️ Votes: {random.choice(VOTES)}\n🗣️ Requested BY{message.from_user.mention}\n\n♻️ {message.chat.title}", reply_markup=InlineKeyboardMarkup(buttons))
-
-@Client.on_message(filters.text & filters.group & filters.incoming & filters.chat(AUTH_GROUPS) if AUTH_GROUPS else filters.text & filters.group & filters.incoming)
-async def group(client, message):
-    if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
-        return
-    if 2 < len(message.text) < 50:    
-        btn = []
-        
-        search = message.text
-        result_txt =f"Hey {message.from_user.mention} 👋,\n\n📁 Found ✨  Files For Your Query : {search}"
-        nothing_txt =f"Couldn't Find This Movie.Try Again..! ഈ സിനിമയുടെ ഒറിജിനൽ പേര് ഗൂഗിളിൽ പോയി കണ്ടെത്തി അതുപോലെ ഇവിടെ കൊടുക്കുക 🥺"
-      
-        nyva=BOT.get("username")
-        if not nyva:
-            botusername=await client.get_me()
-            nyva=botusername.username
-            BOT["username"]=nyva
-        files = await get_filter_results(query=search)
-        if files:
-            for file in files:
-                file_id = file.file_id
-                file_name = file.file_name
-                file_size = get_size(file.file_size)
-                file_link = f"https://telegram.dog/{nyva}?start=subinps_-_-_-_{file_id}"
-                btn.append(
-                    [
-                      InlineKeyboardButton(text=f"{file_name}", url=f"{file_link}"),
-
-InlineKeyboardButton(text=f"{file_size}", url=f"{file_link}")
-                    ]
-                )
-        else:
-            return
-        if not btn:
-            return
-        if len(btn) > 10: 
-            btns = list(split_list(btn, 10)) 
-            keyword = f"{message.chat.id}-{message.message_id}"
-            BUTTONS[keyword] = {
-                "total" : len(btns),
-                "buttons" : btns
-            }
-        else:
-            buttons = btn
-            buttons.append(
-                [InlineKeyboardButton(text="📜 1/1",callback_data="pages")]
-            )
-            buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatezz')])            
-            poster=None
-            if API_KEY:
-              poster=await get_poster(search)
-            if poster:
-                msg = await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
-            else:
-                      msg = await message.reply_text(result_txt, reply_markup=InlineKeyboardMarkup(buttons))
-            await asyncio.sleep(600)
-            await msg.delete()
-
-            return
-
-        data = BUTTONS[keyword]
-        buttons = data['buttons'][0].copy()
-
-        buttons.append(
-            [    
-               InlineKeyboardButton(text="• ɢᴏ ᴛᴏ ɴᴇxᴛ ᴘᴀɢᴇ •",callback_data=f"next_0_{keyword}")]
-        )
-        buttons.append(
-            [InlineKeyboardButton(text="ᴘᴀɢᴇ",callback_data="pages2021"),
-             InlineKeyboardButton(text=f"1 - {data['total']}",callback_data="pages"),
-             InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
-            ]
-        ) 
-        buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
-        poster=None
-        if API_KEY:
-         poster=await get_poster(search)
-        if poster:          
-                await message.reply_photo(photo=poster, caption=result_txt, reply_markup=InlineKeyboardMarkup(buttons))
-        else:
-                await message.reply_text(result_txt)
-                await asyncio.sleep(600)
-                await msg.delete()
-
-def get_size(size):
-    """Get size in readable format"""
-
-    units = "Bytes", "KB", "MB", "GB", "TB", "PB", "EB"
-    size = float(size)
-    i = 0
-    while size >= 1024.0 and i < len(units):
-        i += 1
-        size /= 1024.0
-    return "%.2f %s" % (size, units[i])
-
-def split_list(l, n):
-    for i in range(0, len(l), n):
-        yield l[i:i + n]          
-
-
-
-@Client.on_callback_query()
-async def cb_handler(client: Client, query: CallbackQuery):
-    clicked = query.from_user.id
-    try:
-        typed = query.message.reply_to_message.from_user.id
-    except:
-        typed = query.from_user.id
-        pass
-    if (clicked == typed):
-
-        if query.data.startswith("next"):
-            ident, index, keyword = query.data.split("_")
-            try:
-                data = BUTTONS[keyword]
-            except KeyError:
-                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
-                return
-
-            if int(index) == int(data["total"]) - 2:
-                buttons = data['buttons'][int(index)+1].copy()
-
-                buttons.append(
-                    [
-                        InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}"),
-                        InlineKeyboardButton(f"📜 {int(index)+2}/{data['total']}", callback_data="pages")
-                    ]
-                )
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-            else:
-                buttons = data['buttons'][int(index)+1].copy()
-
-buttons.append(
-                    [
-                       InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)+1}_{keyword}"),InlineKeyboardButton("NEXT ➡️", callback_data=f"next_{int(index)+1}_{keyword}"),
-                       InlineKeyboardButton(f"📜 {int(index)+2}/{data['total']}", callback_data="pages")
-                    ]
-                )
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-
-
-        elif query.data.startswith("back"):
-            ident, index, keyword = query.data.split("_")
-            try:
-                data = BUTTONS[keyword]
-            except KeyError:
-                await query.answer("You are using this for one of my old message, please send the request again.",show_alert=True)
-                return
-
-            if int(index) == 1:
-                buttons = data['buttons'][int(index)-1].copy()
-
-                buttons.append(
-                    [
-                        InlineKeyboardButton("𝐍𝐄𝐗𝐓 ☞", callback_data=f"next_{int(index)-1}_{keyword}"),
-                        InlineKeyboardButton(f"📜 {int(index)}/{data['total']}", callback_data="pages")
-                    ]
-                )
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return   
-            else:
-                buttons = data['buttons'][int(index)-1].copy()
-
-                buttons.append(
-                    [
-                         InlineKeyboardButton("☜ 𝐁𝐀𝐂𝐊", callback_data=f"back_{int(index)-1}_{keyword}"),InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{int(index)-1}_{keyword}"),
-                         InlineKeyboardButton(f"📜 {int(index)}/{data['total']}", callback_data="pages")
-                    ]
-                )
-
-                await query.edit_message_reply_markup( 
-                    reply_markup=InlineKeyboardMarkup(buttons)
-                )
-                return
-        elif query.data == "about":
-            buttons = [
-                [
-                    InlineKeyboardButton('Update Channel', url='https://t.me/cv_updatez'),
-                    InlineKeyboardButton('Source Code', url='https://t.me/nokiyirunnoippokitum')
-                ]
-                ]
-            await client.send_sticker(chat_id=message.from_user.id, sticker='CAACAgQAAxkBAAOZYXTsPU3t8jaR6pnonM8THf3Ip44AAjQMAAK4frlRCj-r5d2VXikeBA', reply_markup=InlineKeyboardMarkup(buttons))
-
-
-
-        elif query.data.startswith("subinps"):
-            ident, file_id = query.data.split("#")
+        try:
+            ident, file_id = cmd.text.split("_-_-_-_")
             filedetails = await get_file_details(file_id)
             for files in filedetails:
                 title = files.file_name
@@ -351,54 +170,206 @@ buttons.append(
                     f_caption = f"{files.file_name}"
                 buttons = [
                     [
-                        InlineKeyboardButton('𝐔𝐏𝐃𝐀𝐓𝐄𝐒 ⚒️', url='https://t.me/cv_updatez'),
-                        InlineKeyboardButton('𝐉𝐎𝐈𝐍 ♂️', url='https://t.me/CV_Group1')
+                        InlineKeyboardButton('ꜱᴇᴀʀᴄʜ ᴀɢᴀɪɴ 🔎', switch_inline_query_current_chat='')
                     ]
                     ]
-                
-                await query.answer()
-                await client.send_cached_media(
-                    chat_id=query.from_user.id,
-                    file_id=file_id,
-                    caption=f_caption,
-
-reply_markup=InlineKeyboardMarkup(buttons)
-                    )
-        elif query.data.startswith("checksub"):
-            if AUTH_CHANNEL and not await is_subscribed(client, query):
-                await query.answer("I Like Your Smartness, But Don't Be Oversmart 😒",show_alert=True)
-                return
-            ident, file_id = query.data.split("#")
-            filedetails = await get_file_details(file_id)
-            for files in filedetails:
-                title = files.file_name
-                size=files.file_size
-                f_caption=files.caption
-                if CUSTOM_FILE_CAPTION:
-                    try:
-                        f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
-                    except Exception as e:
-                        print(e)
-                        f_caption=f_caption
-                if f_caption is None:
-                    f_caption = f"{title}"
-                buttons = [
-                    [
-                        InlineKeyboardButton('New Movies', url='https://t.me/new_movie_z'),
-                        InlineKeyboardButton('Update Channel', url='https://t.me/cv_updatez') 
-                    ]
-                    ]
-                
-                await query.answer()
-                await client.send_cached_media(
-                    chat_id=query.from_user.id,
+                await bot.send_cached_media(
+                    chat_id=cmd.from_user.id,
                     file_id=file_id,
                     caption=f_caption,
                     reply_markup=InlineKeyboardMarkup(buttons)
                     )
-
-
-        elif query.data == "pages":
-            await query.answer()
+        except Exception as err:
+            await cmd.reply_text(f"Something went wrong!\n\nError: {err}")
+    elif len(cmd.command) > 1 and cmd.command[1] == 'subscribe':
+        invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
+        await bot.send_photo(
+            chat_id=cmd.from_user.id,
+            photo=f"{random.choice(PHOTO)}",
+            caption="🔊 𝗝𝗼𝗶𝗻 𝗢𝘂𝗿 𝗠𝗮𝗶𝗻 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 🤭\n\nനിങ്ങൾക് സിനിമകൾ വെന്നോ? അതിനായി അത്യം ങ്ങളുടെ മെയിൻ ചാനലിൽ ജോയിൻ ചെയ്യണം... 😁\nJoin ചെയ്ത ശേഷം വീണ്ടും ബോട്ട് /start ആക്കൂ.😁\nഎന്നിട്ട് ഒന്നുടെ Refresh ബട്ടൺ ക്ലിക്ക് ചെയ്താൽ മൂവി കിട്ടുന്നതാണ്..!",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("📌 ᴊᴏɪɴ ᴍᴀɪɴ ᴄʜᴀɴɴᴇʟ", url=invite_link.invite_link)
+                    ]
+                ]
+            )
+        )
     else:
-        await query.answer(f"🤧 This is not 4 You ⚠️",show_alert=True)
+        await cmd.reply_photo(
+            photo=f"{random.choice (PHOTO)}",
+            caption=START_MSG.format(cmd.from_user.mention),
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("➕ 𝖠𝖽𝖽 𝖬𝖾 𝖳𝗈 𝖸𝗈𝗎𝗋 𝖦𝗋𝗈𝗎𝗉 ➕", url= "https://t.me/TheSupermanRoBoT?startgroup=true")
+                    ],
+                    [
+                        InlineKeyboardButton("🔍 𝖲𝖾𝖺𝗋𝖼𝗁 𝖧𝖾𝗋𝖾", switch_inline_query_current_chat='')
+                    ]    
+                ]
+            )
+         )
+    
+
+@Client.on_message(filters.command('channel') & filters.user(ADMINS))
+async def channel_info(bot, message):
+    """Send basic information of channel"""
+    if isinstance(CHANNELS, (int, str)):
+        channels = [CHANNELS]
+    elif isinstance(CHANNELS, list):
+        channels = CHANNELS
+    else:
+        raise ValueError("Unexpected type of CHANNELS")
+
+    text = '📑 Indexed channels/groups\n'
+    for channel in channels:
+        chat = await bot.get_chat(channel)
+        if chat.username:
+            text += '\n@' + chat.username
+        else:
+            text += '\n' + chat.title or chat.first_name
+
+    text += f'\n\nTotal: {len(CHANNELS)}'
+
+    if len(text) < 4096:
+        await message.reply(text)
+    else:
+        file = 'Indexed channels.txt'
+        with open(file, 'w') as f:
+            f.write(text)
+        await message.reply_document(file)
+        os.remove(file)
+
+
+@Client.on_message(filters.command('total') & filters.user(ADMINS))
+async def total(bot, message):
+    """Show total files in database"""
+    msg = await message.reply("Processing...🖕", quote=True)
+    try:
+        total = await Media.count_documents()
+        await msg.edit(f'🖕 Saved files: {total}')
+    except Exception as e:
+        logger.exception('Failed to check total files')
+        await msg.edit(f'Error: {e}')
+
+
+@Client.on_message(filters.command('logger') & filters.user(ADMINS))
+async def log_file(bot, message):
+    """Send log file"""
+    try:
+        await message.reply_document('TelegramBot.log')
+    except Exception as e:
+        await message.reply(str(e))
+
+
+@Client.on_message(filters.command('delete') & filters.user(ADMINS))
+async def delete(bot, message):
+    """Delete file from database"""
+    reply = message.reply_to_message
+    if reply and reply.media:
+        msg = await message.reply("Processing...🖕", quote=True)
+    else:
+        await message.reply('Reply to file with /delete which you want to delete', quote=True)
+        return
+
+    for file_type in ("document", "video", "audio"):
+        media = getattr(reply, file_type, None)
+        if media is not None:
+            break
+    else:
+        await msg.edit('This is not supported file format')
+        return
+
+    result = await Media.collection.delete_one({
+        'file_name': media.file_name,
+        'file_size': media.file_size,
+        'mime_type': media.mime_type
+    })
+    if result.deleted_count:
+        await msg.edit('File is successfully deleted from database')
+    else:
+        await msg.edit('File not found in database')
+@Client.on_message(filters.command('vok'))
+async def bot_info(bot, message):
+    buttons = [
+        [
+            InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ ⚒️', url='https://t.me/cv_updatez'),
+            InlineKeyboardButton('ᴊᴏɪɴ ♂️', url='https://t.me/cv_group1')
+        ]
+        ]
+    await message.reply(text="<b>ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href='https://t.me/joel_bx'>ᴊᴏᴇʟ ʙx</a>\nLanguage : <code>Python3</code>\nLibrary : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio</a>\nSource Code : <a href='https://github.com/Jinn-Of-Telegram/Media-Search-bot-V2'>Click here</a>\nUpdate Channel : <a href='https://t.me/ErrorXBotz'>ErrorXBotz</a> </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+
+@Client.on_message(filters.command('ok'))
+async def bot_info(bot, message):
+    buttons = [
+        [
+            InlineKeyboardButton('ᴜᴘᴅᴀᴛᴇꜱ ⚒️', url='https://t.me/cv_updatez'),
+            InlineKeyboardButton('ᴊᴏɪɴ ♂️', url='https://t.me/cv_group1')
+        ]
+        ]
+    await message.reply(text="<b>If You Have Any Doubts And If Any Errors In Codes Or Bugs Inform Us On Our Support Group ❗️\n Use Below Buttons To Get Support Group / Update channel Links </b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+
+@Client.on_message(filters.command('info') & (filters.private | filters.group))
+async def showinfo(client, message):
+    try:
+        cmd, id = message.text.split(" ", 1)
+    except:
+        id = False
+        pass
+
+    if id:
+        if (len(id) == 10 or len(id) == 9):
+            try:
+                checkid = int(id)
+            except:
+                await message.reply_text("Enter a valid USER ID", quote=True, parse_mode="md")
+                return
+        else:
+            await message.reply_text("Enter a valid USER ID", quote=True, parse_mode="md")
+            return           
+
+        if Config.SAVE_USER == "yes":
+            name, username, dcid = await find_user(str(id))
+        else:
+            try:
+                user = await client.get_users(int(id))
+                name = str(user.first_name + (user.last_name or ""))
+                username = user.username
+                dcid = user.dc_id
+            except:
+                name = False
+                pass
+
+        if not name:
+            await message.reply_text("USER Details not found!!", quote=True, parse_mode="md")
+            return
+    else:
+        if message.reply_to_message:
+            name = str(message.reply_to_message.from_user.first_name\
+                    + (message.reply_to_message.from_user.last_name or ""))
+            id = message.reply_to_message.from_user.id
+            username = message.reply_to_message.from_user.username
+            dcid = message.reply_to_message.from_user.dc_id
+        else:
+            name = str(message.from_user.first_name\
+                    + (message.from_user.last_name or ""))
+            id = message.from_user.id
+            username = message.from_user.username
+            dcid = message.from_user.dc_id
+    
+    if not str(username) == "None":
+        user_name = f"@{username}"
+    else:
+        user_name = "none"
+
+    await message.reply_text(
+        f"<b><u>UserInfo</b></u>\n\n"
+        f"<b>Name</b> : {name}\n"
+        f"<b>UserID</b> : <code>{id}</code>\n"
+        f"<b>Username Name</b> : {user_name}\n"
+        f"<b>Permanant USER Link</b> : <a href='tg://user?id={id}'>Link ❗️</a>\n"
+        f"<b>@cv_group1</b>",
+        quote=True,
+        parse_mode="html"
+    )
