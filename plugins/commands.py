@@ -150,7 +150,7 @@ async def start(bot, cmd):
                 )
                 return
             except Exception:
-                await cmd.send_message(
+                await bot.send_message(
                     chat_id=cmd.from_user.id,
                     text="Something went Wrong.",
                     parse_mode="HTML",
