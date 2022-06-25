@@ -64,7 +64,6 @@ PHOTO = [
 ]
 
 AUTH_CHANNEL = ["-1001744938590", "-1001678762161"]
-
 plswork = {random.choice(AUTH_CHANNEL)}
 
 kissme=db=("DATABASE_URI, DATABASE_NAME")
