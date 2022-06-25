@@ -3,10 +3,13 @@ from pyrogram import Client, emoji, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument
 
 from utils import get_search_results, is_subscribed
-from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
+from info import CACHE_TIME, AUTH_USERS, CUSTOM_FILE_CAPTION
+
+AUTH_CHANNEL = ["-1001744938590", "-1001678762161"]
+plswork = {random.choice(AUTH_CHANNEL)}
 
 logger = logging.getLogger(__name__)
-cache_time = 0 if AUTH_USERS or AUTH_CHANNEL else CACHE_TIME
+cache_time = 0 if AUTH_USERS or plswork else CACHE_TIME
 
 
 @Client.on_inline_query(filters.user(AUTH_USERS) if AUTH_USERS else None)
