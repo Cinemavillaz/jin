@@ -1,6 +1,7 @@
 import re
 import base64
-import logging, random
+import logging
+import random
 from struct import pack
 from pyrogram.errors import UserNotParticipant
 from pyrogram.file_id import FileId
