@@ -1,4 +1,4 @@
-import logging
+import logging, random
 from pyrogram import Client, emoji, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument
 
