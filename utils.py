@@ -1,7 +1,6 @@
 import re
 import base64
 import logging
-import random
 from struct import pack
 from pyrogram.errors import UserNotParticipant
 from pyrogram.file_id import FileId
@@ -13,15 +12,12 @@ import os
 import PTN
 import requests
 import json
-from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER, API_KEY
+from info import DATABASE_URI, DATABASE_NAME, COLLECTION_NAME, USE_CAPTION_FILTER,AUTH_CHANNEL, API_KEY
 DATABASE_URI_2=os.environ.get('DATABASE_URI_2', DATABASE_URI)
 DATABASE_NAME_2=os.environ.get('DATABASE_NAME_2', DATABASE_NAME)
 COLLECTION_NAME_2="Posters"
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-AUTH_CHANNEL = ["-1001744938590", "-1001678762161"]
-plswork = {random.choice(AUTH_CHANNEL)}
 
 client = AsyncIOMotorClient(DATABASE_URI)
 db = client[DATABASE_NAME]
