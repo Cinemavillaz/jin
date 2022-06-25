@@ -209,7 +209,7 @@ async def group(client, message):
              InlineKeyboardButton(text="ᴅᴇʟᴇᴛᴇ",callback_data="close")
             ]
         ) 
-        buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatez')])
+        buttons.insert(0,[InlineKeyboardButton(text='⭕️ Join Our Main Channel ⭕️', url='https://t.me/cv_updatezz')])
         poster=None
         if API_KEY:
          poster=await get_poster(search)
