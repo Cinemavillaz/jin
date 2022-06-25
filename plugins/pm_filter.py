@@ -1,5 +1,5 @@
 #Kanged From @TroJanZheX
-from info import AUTH_CHANNEL, AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS
+from info import AUTH_USERS, CUSTOM_FILE_CAPTION, API_KEY, AUTH_GROUPS
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from pyrogram import Client, filters
 import re
@@ -12,7 +12,11 @@ from utils import get_filter_results, get_file_details, is_subscribed, get_poste
 BUTTONS = {}
 BOT = {}
 
-RATING = ["5.1/10 | IMDB", "6.2/10 | IMDB", "7.3/10 | IMDB", "8.4/10 | IMDB", "9.5/10 | IMDB", ]
+AUTH_CHANNEL = ["-1001678762161", "-1001744938590"]
+
+plswork = {random.choice(AUTH_CHANNEL)}
+
+RATING = ["5.1/10 | IMDB", "6.2/10 | IMDB", "7.3/10 | IMDB", "8.4/10 | IMDB", "9.5/10 | IMDB"]
 GENRES = ["fun, fact",
          "Thriller, Comedy",
          "Drama, Comedy",
@@ -33,9 +37,9 @@ async def filter(client, message):
     if message.text.startswith("/"):
         return
     if AUTH_CHANNEL:
-        invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        invite_link = plswork
         try:
-            user = await client.get_chat_member(int(AUTH_CHANNEL), message.from_user.id)
+            user = await client.get_chat_member(int(plswork), message.from_user.id)
             if user.status == "kicked":
                 await client.send_message(
                     chat_id=message.from_user.id,
